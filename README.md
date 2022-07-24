@@ -1,2 +1,17 @@
-전략 만드는 페이지의 테스트 레포지토리입니다.
+# test of making strategy page
+
+## config backend env
+
+```
+$ cd backend
+$ python3 -m venv ./
+$ source env/bin/activate
+(backend)$ pip install -r requirements
+(backend)$ python main.py
+```
+
+## config frontend env
+```
+$ 추후 작성 예정
+```
 
