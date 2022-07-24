@@ -25,18 +25,9 @@ pipeline {
             steps {
                 sh """
                 cd backend
-                python3 -m venv ./
+                pip install -r requirements
+                nohup python main.py&
                 """
-            }
-        }
-        stage('run fast-api') {
-            steps {
-                withPythonEnv('./backend/bin/python3.9'){
-                    sh """
-                    pip install -r requirements
-                    nohup python main.py&
-                    """
-                }
             }
         }
     }
