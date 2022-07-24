@@ -11,22 +11,32 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build frontend codes') {
+        stage('update npm packages') {
             steps {
                 sh """
                 cd ${frontDir} \
                 npm install \
-                npm start
                 """
             }
         }
-        stage('Build backend codes') {
+        stage('update python packages') {
             steps {
                 sh """
                 cd ${backDir} \
                 source bin/activate \
                 pip install -r requirements \
-                python src/main.py
+                """
+            }
+        }
+        stage('run front, back') {
+            steps {
+                sh """
+                cd ${backDir} \
+                source bin/activate \
+                python src/main.py \
+                cd .. \
+                cd ${frontDir} \
+                npm start \
                 """
             }
         }
