@@ -23,7 +23,7 @@ pipeline {
         stage('Build backend codes') {
             steps {
                 sh """
-                cd ../${backend} \
+                cd ${backDir} \
                 source bin/activate \
                 pip install -r requirements \
                 python src/main.py
