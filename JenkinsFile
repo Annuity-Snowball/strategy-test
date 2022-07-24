@@ -1,0 +1,32 @@
+def mainDir="strategy-test"
+def frontDir = "frontend"
+def backDir = "backend"
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Pull Codes from Github'){
+            steps{
+                checkout scm
+            }
+        }
+        stage('Build frontend codes') {
+            steps {
+                sh """
+                cd ${frontDir}
+                npm start
+                """
+            }
+        }
+        stage('Build backend codes') {
+            steps {
+                sh """
+                cd ${backend}
+                source bin/activate
+                python src/main.py
+                """
+            }
+        }
+    }
+}

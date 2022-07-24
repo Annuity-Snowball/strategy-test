@@ -29,6 +29,10 @@ app.add_middleware(
 async def read_root() -> dict:
     return {"message": "Welcome to annuity helper."}
 
+@app.get("/stra", tags=["stra"])
+async def get_todos() -> dict:
+    return { "data": strategy_list }
+
 @app.post("/stra", tags=["stra"])
 async def add_todo(strategy: dict) -> dict:
     strategy_list.append(strategy)
