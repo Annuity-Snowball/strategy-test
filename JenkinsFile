@@ -4,6 +4,7 @@ def backDir = "backend"
 
 pipeline {
     agent any
+    tools {nodejs "nodejs"}
 
     stages {
         stage('Pull Codes from Github'){
