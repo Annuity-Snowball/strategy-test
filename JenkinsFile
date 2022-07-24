@@ -25,9 +25,9 @@ pipeline {
             steps {
                 sh """
                 cd backend
-                pip install fastapi
-                pip install uvicorn
-                nohup python src/main.py&
+                . ./bin/activate
+                pip install -r requirements.txt
+                nohup python ./src/main.py&
                 """
             }
         }
