@@ -14,12 +14,14 @@ pipeline {
         }
         stage('update npm packages') {
             steps {
+                sh 'cd frontend'
                 sh 'npm install'
                 sh 'npm start'
             }
         }
         stage('update python packages') {
             steps {
+                sh 'python -m venv ./backend'
                 sh 'source backend/bin/activate'
                 sh 'pip install -r requirements'
                 sh 'python main.py'
