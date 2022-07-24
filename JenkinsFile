@@ -33,7 +33,7 @@ pipeline {
         stage('print codes') {
             steps {
                 sh """
-                tree
+                tree -L 2
                 """
             }
         }
