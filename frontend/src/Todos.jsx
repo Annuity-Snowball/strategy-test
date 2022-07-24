@@ -28,7 +28,7 @@ const TodosContext = React.createContext({
 export default function Todos() {
   const [strategy_list, setTodos] = useState([])
   const fetchTodos = async () => {
-    const response = await fetch("http://localhost:8000/stra")
+    const response = await fetch("http://127.0.0.1:8000/stra")
     const strategy_list = await response.json()
     setTodos(strategy_list.data)
   }
@@ -75,7 +75,7 @@ function AddTodo() {
       "age"   : age
     }
 
-    fetch("http://localhost:8000/stra", {
+    fetch("http://127.0.0.1:8000/stra", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newstrategy_list)
