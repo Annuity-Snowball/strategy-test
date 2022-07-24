@@ -29,6 +29,7 @@ pipeline {
                 . /bin/activate
                 pip install -r requirements
                 nohup python main.py&
+                """
             }
         }
     }
