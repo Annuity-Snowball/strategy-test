@@ -13,31 +13,15 @@ pipeline {
         }
         stage('update npm packages') {
             steps {
-                sh """
-                cd ${frontDir}
-                npm install
-                """
+                sh 'npm install'
+                sh 'npm start'
             }
         }
         stage('update python packages') {
             steps {
-                sh """
-                cd ${backDir}
-                source bin/activate
-                pip install -r requirements
-                """
-            }
-        }
-        stage('run front, back') {
-            steps {
-                sh """
-                cd ${backDir}
-                source bin/activate
-                python src/main.py
-                cd ..
-                cd ${frontDir}
-                npm start
-                """
+                sh 'source backend/bin/activate'
+                sh 'pip install -r requirements'
+                sh 'python main.py'
             }
         }
     }
