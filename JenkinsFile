@@ -17,7 +17,7 @@ pipeline {
                 sh """
                 cd frontend
                 npm install
-                npm start
+                pm2 start "npm start"
                 """
             }
         }
