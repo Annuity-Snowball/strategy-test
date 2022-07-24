@@ -21,16 +21,22 @@ pipeline {
                 """
             }
         }
-        stage('update python packages') {
+        stage('make python venv') {
             steps {
                 sh """
                 cd backend
                 python3 -m venv ./
-                . ./bin/activate
-                cd backend
-                pip install -r requirements
-                nohup python main.py&
                 """
+            }
+        }
+        stage('run fast-api') {
+            steps {
+                withPythonEnv('./backend/bin/python3.9'){
+                    sh """
+                    pip install -r requirements
+                    nohup python main.py&
+                    """
+                }
             }
         }
     }
