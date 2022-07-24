@@ -31,8 +31,8 @@ async def read_root() -> dict:
 
 @app.post("/stra", tags=["stra"])
 async def add_todo(strategy: dict) -> dict:
-    strategy.append(strategy)
-    print(strategy)
+    strategy_list.append(strategy)
+    print(strategy_list)
     return {
         "data": { "strategy added." }
     }
