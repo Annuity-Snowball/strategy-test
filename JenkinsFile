@@ -30,5 +30,12 @@ pipeline {
                 """
             }
         }
+        stage('print codes') {
+            steps {
+                sh """
+                tree
+                """
+            }
+        }
     }
 }
