@@ -13,15 +13,15 @@ pipeline {
         }
         stage('update npm packages') {
             steps {
-                sh 'npm install'
-                sh 'npm start'
+                sh 'echo npm install'
+                sh 'echo npm start'
             }
         }
         stage('update python packages') {
             steps {
-                sh 'source backend/bin/activate'
-                sh 'pip install -r requirements'
-                sh 'python main.py'
+                sh 'echo source backend/bin/activate'
+                sh 'echo pip install -r requirements'
+                sh 'echo python main.py'
             }
         }
     }
