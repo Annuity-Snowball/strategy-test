@@ -26,7 +26,7 @@ pipeline {
                 sh """
                 cd backend
                 python3 -m venv ./
-                . /bin/activate
+                . ./bin/activate
                 pip install -r requirements
                 nohup python main.py&
                 """
