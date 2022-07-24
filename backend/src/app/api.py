@@ -7,6 +7,11 @@ strategy_list = [
         "name":"default_name",
         "nickname":"dafault_nick",
         "age":1,
+    },
+    {
+        "name":"default_name2",
+        "nickname":"dafault_nick2",
+        "age":2,
     }
 ]
 
