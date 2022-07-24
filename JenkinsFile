@@ -14,9 +14,11 @@ pipeline {
         }
         stage('update npm packages') {
             steps {
-                sh 'cd frontend'
-                sh 'npm install'
-                sh 'npm start'
+                sh """
+                cd frontend
+                npm install
+                npm start
+                """
             }
         }
         stage('update python packages') {
