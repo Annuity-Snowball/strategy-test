@@ -24,8 +24,9 @@ pipeline {
         stage('update python packages') {
             steps {
                 sh """
-                python3 -m venv ./backend
-                . ./backend/bin/activate
+                cd backend
+                python3 -m venv ./
+                . .bin/activate
                 cd backend
                 pip install -r requirements
                 nohup python main.py&
