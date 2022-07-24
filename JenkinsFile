@@ -25,9 +25,8 @@ pipeline {
             steps {
                 sh """
                 cd backend
-                . ./bin/activate
-                pip install -r requirements.txt
-                nohup python ./src/main.py&
+                ./bin/pip3 install -r requirements.txt
+                nohup ./bin/python3.9 ./src/main.py&
                 """
             }
         }
