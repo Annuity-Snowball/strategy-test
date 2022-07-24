@@ -13,6 +13,7 @@ const App = () =>(
   <>
     <div className="App">
       <Title title="SnowBall"/>
+      <nav>
       <ul className="banner">
         <li>우리는?</li>
         <li>포트폴리오 등록</li>
@@ -22,6 +23,7 @@ const App = () =>(
         <li className="Loginbanner">Log In</li>
         <li className="Signupbanner">Sign up</li>
       </ul>
+      </nav>
     </div>
 
     <h1>포트폴리오 입력</h1>
