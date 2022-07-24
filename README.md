@@ -5,7 +5,7 @@
 ```
 $ cd backend
 $ python3 -m venv ./
-$ source env/bin/activate
+$ source bin/activate
 (backend)$ pip install -r requirements
 (backend)$ python main.py
 ```
