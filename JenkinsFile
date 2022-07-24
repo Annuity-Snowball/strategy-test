@@ -14,8 +14,8 @@ pipeline {
         stage('Build frontend codes') {
             steps {
                 sh """
-                cd ${frontDir}
-                npm install
+                cd ${frontDir} \
+                npm install \
                 npm start
                 """
             }
@@ -23,9 +23,9 @@ pipeline {
         stage('Build backend codes') {
             steps {
                 sh """
-                cd ${backend}
-                source bin/activate
-                pip install -r requirements
+                cd ../${backend} \
+                source bin/activate \
+                pip install -r requirements \
                 python src/main.py
                 """
             }
