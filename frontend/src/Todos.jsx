@@ -25,7 +25,8 @@ const Title = (props) => {
 const TodosContext = React.createContext({
   strategy_list: [], fetchTodos: () => {}
 })
-export default function Todos() {
+
+export default async function Todos() {
   const [strategy_list, setTodos] = useState([])
   const fetchTodos = async () => {
     const response = await fetch("http://192.168.30.2:8000/stra")
@@ -52,7 +53,7 @@ export default function Todos() {
   )
 }
 
-function AddTodo() {
+async function AddTodo() {
   const [name, setName] = React.useState("")
   const [nickname, setNickname] = React.useState("")
   const [age, setAge] = React.useState("")
