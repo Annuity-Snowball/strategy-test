@@ -114,8 +114,7 @@ const App = () =>(
         <li>프트폴리오 쇼핑</li>
         <li>공지사항</li>
         <li className="Loginbanner">Log In</li>
-        <li
-         className="Signupbanner">Sign up</li>
+        <li className="Signupbanner">Sign up</li>
       </ul>
     </div>
 
