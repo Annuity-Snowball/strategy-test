@@ -16,20 +16,15 @@ import {
     Text,
     useDisclosure
 } from "@chakra-ui/react";
-import './App.css';
-const Title = (props) => {
-  return (
-    <h1 className='logo'>{props.title}</h1>
-  );
-}
 const TodosContext = React.createContext({
   strategy_list: [], fetchTodos: () => {}
 })
 
+
 export default function Todos() {
   const [strategy_list, setTodos] = useState([])
   const fetchTodos = async () => {
-    const response = await fetch("http://192.168.30.2:8000/stra")
+    const response = await fetch("http://192.168.30.4:8000/stra")
     const strategy_list = await response.json()
     setTodos(strategy_list.data)
   }
@@ -38,7 +33,6 @@ export default function Todos() {
   }, [])
   return (
     <TodosContext.Provider value={{strategy_list, fetchTodos}}>
-      <App />
       <AddTodo />
       <Stack spacing={5}>
         {strategy_list.map((todo) => (
@@ -59,13 +53,13 @@ function AddTodo() {
   const [age, setAge] = React.useState("")
   const {strategy_list, fetchTodos} = React.useContext(TodosContext)
 
-  const handleInput1 = event  => {
+  const handleInput1 = (event)  => {
     setName(event.target.value)
   }
-  const handleInput2 = event  => {
+  const handleInput2 = (event)  => {
     setNickname(event.target.value)
   }
-  const handleInput3 = event  => {
+  const handleInput3 = (event)  => {
     setAge(event.target.value)
   }
 
@@ -76,7 +70,7 @@ function AddTodo() {
       "age"   : age
     }
 
-    fetch("http://192.168.30.2:8000/stra", {
+    fetch("http://192.168.30.4:8000/stra", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newstrategy_list)
@@ -88,37 +82,18 @@ function AddTodo() {
       <InputGroup size="md">
         <input type="text"
           placeholder="이름을 입력하세요"
-          onChange={handleInput1}
+          onChange={handleInput1} style={{display : "inline-block"}}
         />
         <input type="text"
           placeholder="별명을 입력하세요"
-          onChange={handleInput2}
+          onChange={handleInput2} style={{display : "inline-block"}}
         />
         <input type="text"
           placeholder="나이을 입력하세요"
-          onChange={handleInput3}
+          onChange={handleInput3} style={{display : "inline-block"}}
         />
       </InputGroup>
       <button type="submit"onClick={handleSubmit}>전송</button>
     </form>
   )
 }
-const App = () =>(
-  <>
-    <div className="App">
-      <Title title="SnowBall"/>
-      <ul className="banner">
-        <li>우리는?</li>
-        <li>포트폴리오 등록</li>
-        <li>포트폴리오 추천</li>
-        <li>프트폴리오 쇼핑</li>
-        <li>공지사항</li>
-        <li className="Loginbanner">Log In</li>
-        <li className="Signupbanner">Sign up</li>
-      </ul>
-    </div>
-
-    <h1>포트폴리오 입력</h1>
-    <br></br>
-  </>
-);
