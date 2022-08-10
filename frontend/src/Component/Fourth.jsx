@@ -11,6 +11,7 @@ export default function Fourth() {
         width : '300px',
         height : '500px',
         display : 'inline-block',
+        verticalAlign: 'middle',
         boxShadow : '0px 0px 3px 2px gray',
         marginLeft : '10px',
         }

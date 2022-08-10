@@ -29,7 +29,7 @@ export default function PrintPF() {
             </tbody>
         </table>
         </div>
-
+        <br/>
 
     </div>
   )

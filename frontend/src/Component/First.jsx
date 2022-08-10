@@ -10,12 +10,14 @@ export default function First() {
         width : '300px',
         height : '500px',
         display : 'inline-block',
+        verticalAlign: 'middle',
         boxShadow : '0px 0px 3px 2px gray',
         }
     const imgstyle ={
         width : '50px',
         display : 'inline-block',
         marginLeft : '10px',
+
     }
         return (
         <>

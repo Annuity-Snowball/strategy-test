@@ -6,12 +6,14 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Banner from './Component/Banner';
 import Portfolio from './Component/Portfolio';
 import PortfolioPrint from './Component/PrintPF';
+import Graph from './Component/Graph';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ChakraProvider>
   <Banner />
   <Portfolio />
   <PortfolioPrint/>
+  <Graph/>
 </ChakraProvider>
 );
 
