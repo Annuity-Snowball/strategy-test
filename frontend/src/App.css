@@ -1,7 +1,7 @@
 ul{
   display: inline-block;
   position: relative;
-  left: 50%;
+  left: 28%;
   transform: translateY(-20%);
   list-style: none;
   }
@@ -33,4 +33,20 @@ ul li {
   border-radius: 5px;
   padding: 5px;
   color: rgb(112,239,222);
+}
+#root{
+  width: 1700px;
+}
+.p_insert_body{
+  margin: 20px;
+}
+.add:hover{
+  color: white;
+  background-color: #131523;
+}
+.add{
+  font-weight: bold;
+}
+img{
+  vertical-align: middle;
 }

@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from "@chakra-ui/react";
-import Todos from "./Todos";
-
+import Banner from './Component/Banner';
+import Portfolio from './Component/Portfolio';
+import PortfolioPrint from './Component/PrintPF';
+import Graph from './Component/Graph';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ChakraProvider>
-  <Todos/>
+  <Banner />
+  <Portfolio />
+  <PortfolioPrint/>
+  <Graph/>
 </ChakraProvider>
 );
 
