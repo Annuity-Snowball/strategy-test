@@ -8,7 +8,6 @@ export default function Recommand1() {
     const style={
         width : '600px',
         height : '70px',
-        border : '1px solid black',
         boxShadow : '0px 0px 2px 2px gray',
         display : 'inline-block',
     }
