@@ -35,7 +35,7 @@ ul li {
   color: rgb(112,239,222);
 }
 #root{
-  width: 1700px;
+  width: 1800px;
 }
 .p_insert_body{
   margin: 20px;
@@ -45,7 +45,7 @@ ul li {
   background-color: #131523;
 }
 .add{
-  font-weight: bold;
+  font-weight: bold;  
 }
 img{
   vertical-align: middle;
