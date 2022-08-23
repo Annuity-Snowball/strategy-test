@@ -50,3 +50,6 @@ ul li {
 img{
   vertical-align: middle;
 }
+.strategycircle{
+  display: inline-block;
+}
