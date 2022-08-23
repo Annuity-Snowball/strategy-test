@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')); //rgb(112,239
 root.render(
   <ChakraProvider>
     <BrowserRouter>
-    <Banner />
+    <Banner/>
     <Routes>
       <Route path="/" element={<Main/>}></Route>
       <Route path="/insert" element={<Insert />}></Route>
