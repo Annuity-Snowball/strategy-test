@@ -2,6 +2,7 @@
 table {
   border: 1px solid white;
   width: 100%;
+  border-collapse:collapse;
 }
 th{
   text-align: left;
@@ -14,7 +15,8 @@ td{
   font-size: 18px;
 }
 th {
-  background-color: rgb(210, 205, 223);
+  background-color: #131523;
+  color: rgb(112,239,222);
 }
 tr:hover{
   box-shadow: 0px 0px 5px #333 inset;

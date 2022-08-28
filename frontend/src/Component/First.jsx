@@ -1,3 +1,4 @@
+import { border } from '@chakra-ui/react';
 import React,{useState,useEffect} from 'react'
 import arrow from '../img/arrow.png'
 
@@ -19,16 +20,18 @@ export default function First() {
       }
     const style = {
         width : '300px',
-        height : '500px',
+        height : '600px',
         display : 'inline-block',
         verticalAlign: 'middle',
+        position : 'relative',
         boxShadow : '0px 0px 3px 2px gray',
         }
     const imgstyle ={
         width : '50px',
         display : 'inline-block',
         marginLeft : '10px',
-
+    }
+    const handlePortfolioproduce =(e) =>{
     }
         return (
         <>
@@ -41,7 +44,7 @@ export default function First() {
                 개수
             </div>
             <div className="strategyrate">
-                <input className='percent' disabled={true}></input>%
+                <div className='percent'>%</div>
             </div>
             </div>
             {strategy_lists.map( (strategy_list) =>(
@@ -53,14 +56,33 @@ export default function First() {
                     {strategy_list.strategynum}개
                 </div>
                 <div className="strategyrate">
-                    <input className='percent' disabled={true} defaultValue={strategy_list.rate}></input>%
+                <div className='percent'>{strategy_list.rate}%</div>
                 </div>
                 </div>
             ))}
             <div className='btn insert' onClick={handlePortfolioinsert}>
                 + 전략추가하기
             </div>
-        </div>
+        <div style={{width :'300px',height : '180px',position : 'absolute', bottom : '0px'}}>
+        <div className='btn portfoliosubmit'>
+                <div style={{width : '50%',textAlign : 'center'}}>투자기간</div>
+                <input style={{width : '50%',textAlign : 'center',backgroundColor : 'rgb(94,94,94)',border : "none"}}defaultValue={"30년"}></input>
+            </div>
+            <div className='btn portfoliosubmit'>
+                <div style={{width : '50%',textAlign : 'center'}}>납입금액</div>
+                <input style={{width : '50%',textAlign : 'center',backgroundColor : 'rgb(94,94,94)',border : "none"}}defaultValue={"100만원"}></input>
+            </div>
+            <div className='btn portfoliosubmit'>
+                <div style={{width : '50%',textAlign : 'center'}}>납입방법</div>
+                <input style={{width : '50%',textAlign : 'center',backgroundColor : 'rgb(94,94,94)',border : "none"}}defaultValue={"매월"}></input>
+            </div>
+            <div className='btn portfoliosubmit'>
+                <div style={{width : '148px',textAlign : 'center'}}></div>
+                <button type= "submit" style={{width : '152px',textAlign : 'center',border : "none"}} onClick={handlePortfolioproduce}>제출</button>
+            </div>
+            </div>
+            </div>
+        
         {click1 ? (
         <Second/>
         ) : null}
@@ -73,7 +95,7 @@ export default function First() {
 
             const [tab,setTab]=useState("");
             const style = {
-                width : '250px',
+                width : '260px',
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
@@ -96,7 +118,7 @@ export default function First() {
             //tab을 먼저 수정한 후에 click값을 수정하게 진행
                 return (
                 <>
-                <button><img style={imgstyle} alt="화살표" src={arrow}/></button>
+                <img style={imgstyle} alt="화살표" src={arrow}/>
                 <div style={style}>
                     <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="자산직접선택" 
                     onClick={(e) => { setTab( (prev) => { if(prev !== 'curr'){return 'curr'}else{return""}});
@@ -147,7 +169,7 @@ export default function First() {
             ),[tab])
           return (
             <>
-                <button onClick={handlePortfolioinsert}><img style={imgstyle} alt="화살표" src={arrow}/></button>
+                <img style={imgstyle} alt="화살표" src={arrow}/>
                 <div style={style}>
                     <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="벨류지표" onClick={ (e) => {setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); setSelect(e.target.innerText);}}>
                         벨류지표
@@ -204,7 +226,7 @@ export default function First() {
             }
           return (
             <>
-                <button onClick={handlePortfolioinsert}><img style={imgstyle} alt="화살표" src={arrow}/></button>
+                <img style={imgstyle} alt="화살표" src={arrow}/>
                 <div style={style}>
                   <div className='btn name'>
                     {props.name}
@@ -236,7 +258,12 @@ export default function First() {
                 const rate = parseInt(event.target.percent.value);
                 const name = event.target.name.value;
                 const newsum=sum+rate;
-                if(sum<=100)
+                if(rate === 0 || rate === "")
+                {
+                    alert("다시입력해주세요");
+                    return;
+                }
+                if(newsum<=100)
                 {
                     const newStrategy={
                         id : nextId,
@@ -246,14 +273,14 @@ export default function First() {
                     const newStrategys=[...strategy_lists];
                     newStrategys.push(newStrategy);
                     setList(newStrategys);
-                    setSum(newsum+rate);
+                    setSum(newsum);
                 }
                 else{
                     alert("100퍼를 맞춰주세요");
                 }
             }
               const style = {
-                width : '430px',
+                width : '300px',
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
@@ -267,7 +294,7 @@ export default function First() {
             }
           return (
             <>
-                <button onClick={handlePortfolioinsert}><img style={imgstyle} alt="화살표" src={arrow}/></button>
+                <img style={imgstyle} alt="화살표" src={arrow}/>
                 <div style={style}>
                 <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PBR 고" onClick={ (e) => {setTab('curr');}}>
                     <form onSubmit={handleSubmit}>
@@ -315,10 +342,15 @@ export default function First() {
               const handleSubmit = (event) =>{
                 event.preventDefault();
                 const num =event.target.num.value;
-                const rate= event.target.percent.value;
+                const rate= parseInt(event.target.percent.value);
+                if(rate === 0 )
+                {
+                    alert("퍼센트를 다시 입력해주세요");
+                    return;
+                }
                 const name = event.target.name.value;
                 const newsum=sum+rate;
-                if(sum<=100)
+                if(newsum<=100)
                 {
                     const newStrategy={
                         id : nextId,
@@ -328,14 +360,14 @@ export default function First() {
                     const newStrategys=[...strategy_lists];
                     newStrategys.push(newStrategy);
                     setList(newStrategys);
-                    setSum(newsum+rate);
+                    setSum(newsum);
                 }
                 else{
                     alert("100퍼를 맞춰주세요");
                 }
             }
               const style = {
-                width : '430px',
+                width : '300px',
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
@@ -349,7 +381,7 @@ export default function First() {
             }
           return (
             <>
-                <button onClick={handlePortfolioinsert}><img style={imgstyle} alt="화살표" src={arrow}/></button>
+                <img style={imgstyle} alt="화살표" src={arrow}/>
                 <div style={style}>
                 <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER 고" onClick={ (e) => {setTab('curr');}}>
                     <form onSubmit={handleSubmit}>

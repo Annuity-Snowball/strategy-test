@@ -1,10 +1,12 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import '../App.css';
 import '../Recommand.css'
+import Recommand2 from './Recommand2'
 export default function Recommand1() {
     const [getperiod,setPeriod]=useState("");
     const [getmoney,setGetmoney]=useState("");
     const [paiement,setPaiement]=useState("");
+    const [click,setClick]=useState(false);
     const style={
         width : '600px',
         height : '70px',
@@ -27,9 +29,11 @@ export default function Recommand1() {
     }
     function handleSubmit(event){
         alert(`납입금액 : ${getperiod}  월수령금액 : ${getmoney} 납입기간 : ${paiement}`);
+        setClick(true);
         event.preventDefault(); //전송시 새로고침 방지
     }
   return (
+    <>
     <div className="p_insert_body">
         <h1 style={{fontSize:"50px"}}>포트폴리오 입력</h1>
         <br/>
@@ -47,5 +51,7 @@ export default function Recommand1() {
         <button className="button" type='submit'>조회하기</button>
         </form>
     </div>
+    {click ? (<Recommand2 period={getperiod} money={getmoney}/>) : null}
+    </>
   )
 }
