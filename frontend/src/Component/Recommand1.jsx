@@ -1,16 +1,25 @@
 import React,{useState,useEffect} from 'react'
-import '../App.css';
-import '../Recommand.css'
+import '../css/App.css';
+import '../css/Recommand.css'
+import Button from '@mui/material/Button';
 import Recommand2 from './Recommand2'
+import styled from 'styled-components';
+import Grid from '@mui/material/Grid';
+
+const Label = styled.label`
+    color: rgb(112,239,222);
+    font-weight: bold;
+    margin-left: 25px;
+`
 export default function Recommand1() {
     const [getperiod,setPeriod]=useState("");
     const [getmoney,setGetmoney]=useState("");
     const [paiement,setPaiement]=useState("");
     const [click,setClick]=useState(false);
     const style={
-        width : '600px',
+        width : '1000px',
         height : '70px',
-        boxShadow : '0px 0px 2px 2px gray',
+        boxShadow: '1px 1px 3px 1px #dadce0',
         display : 'inline-block',
     }
     function handleOnchange(event)
@@ -40,15 +49,24 @@ export default function Recommand1() {
         <form onSubmit={handleSubmit}>
         <div style={style}>
             <div className="recommand_inquire">
-            <label >수령기간 : </label>
-            <input className="recommandinput"name="수령기간" value={getperiod} onChange={handleOnchange}></input>
-            <label >월수령금액 : </label>
-            <input  className="recommandinput" name="월수령금액" value={getmoney} onChange={handleOnchange}></input>
-            <label>납입기간 : </label>
-            <input className="recommandinput" name="납입기간" value={paiement} onChange={handleOnchange}></input>
+                <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                    <Label >수령기간 : </Label>
+                    <input className="recommandinput"name="수령기간" value={getperiod} onChange={handleOnchange}></input>
+                    </Grid>
+                    <Grid item xs={4}>
+                    <Label >월수령금액 : </Label>
+                        <input  className="recommandinput" name="월수령금액" value={getmoney} onChange={handleOnchange}></input>
+                    </Grid>
+                    <Grid item xs={4}>
+                    <Label>납입기간 : </Label>
+                            <input className="recommandinput" name="납입기간" value={paiement} onChange={handleOnchange}></input>
+                    </Grid>
+                </Grid>
             </div>
         </div>
-        <button className="button" type='submit'>조회하기</button>
+        <Button variant="contained" style={{marginLeft: '30px',
+    padding: '7px',}}type='submit'>조회하기</Button>
         </form>
     </div>
     {click ? (<Recommand2 period={getperiod} money={getmoney}/>) : null}

@@ -1,6 +1,7 @@
 import { border } from '@chakra-ui/react';
 import React,{useState,useEffect} from 'react'
 import arrow from '../img/arrow.png'
+// import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 export default function First() {
     const [click1,setClick1]=useState(false);
@@ -24,12 +25,13 @@ export default function First() {
         display : 'inline-block',
         verticalAlign: 'middle',
         position : 'relative',
-        boxShadow : '0px 0px 3px 2px gray',
+        backgroundColor : 'rgb(255,255,255)',
+        boxShadow: '1px 1px 3px 1px #dadce0',
         }
     const imgstyle ={
-        width : '50px',
+        width : '30px',
         display : 'inline-block',
-        marginLeft : '10px',
+        marginLeft : '20px',
     }
     const handlePortfolioproduce =(e) =>{
     }
@@ -99,14 +101,9 @@ export default function First() {
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
-                boxShadow : '0px 0px 3px 2px gray',
+                boxShadow: '1px 1px 3px 1px #dadce0',
                 marginLeft : '10px',
                 }
-            const imgstyle ={
-                width : '50px',
-                display : 'inline-block',
-                marginLeft : '10px'
-            }
             useEffect( () =>(
                 setClick( (prev) => {if(tab === ''){
                     return false }
@@ -125,6 +122,7 @@ export default function First() {
 
                     setSelect(e.target.innerText);}}>
                         자산직접선택
+                        {/* <ArrowRightIcon style={{width : '30px',color : 'white'}}></ArrowRightIcon> */}
                     </div>
                     <div className={`btn ${ tab ==='prev' ? 'active' : ''}`} name="기준입력" 
                     onClick={ (e) => {setTab((prev) => { if(prev !== 'prev'){return 'prev'}else{return""}}); 
@@ -152,14 +150,9 @@ export default function First() {
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
-                boxShadow : '0px 0px 3px 2px gray',
+                boxShadow: '1px 1px 3px 1px #dadce0',
                 marginLeft : '10px',
                 }
-            const imgstyle ={
-                width : '50px',
-                display : 'inline-block',
-                marginLeft : '10px'
-            }
             useEffect( () =>(
                 setClick( (prev) => {if(tab === ''){
                     return false }
@@ -216,14 +209,9 @@ export default function First() {
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
-                boxShadow : '0px 0px 3px 2px gray',
+                boxShadow: '1px 1px 3px 1px #dadce0',
                 marginLeft : '10px',
                 }
-            const imgstyle ={
-                width : '50px',
-                display : 'inline-block',
-                marginLeft : '10px'
-            }
           return (
             <>
                 <img style={imgstyle} alt="화살표" src={arrow}/>
@@ -284,14 +272,9 @@ export default function First() {
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
-                boxShadow : '0px 0px 3px 2px gray',
+                boxShadow: '1px 1px 3px 1px #dadce0',
                 marginLeft : '10px',
                 }
-            const imgstyle ={
-                width : '50px',
-                display : 'inline-block',
-                marginLeft : '10px'
-            }
           return (
             <>
                 <img style={imgstyle} alt="화살표" src={arrow}/>
@@ -371,14 +354,9 @@ export default function First() {
                 height : '500px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
-                boxShadow : '0px 0px 3px 2px gray',
+                boxShadow: '1px 1px 3px 1px #dadce0',
                 marginLeft : '10px',
                 }
-            const imgstyle ={
-                width : '50px',
-                display : 'inline-block',
-                marginLeft : '10px'
-            }
           return (
             <>
                 <img style={imgstyle} alt="화살표" src={arrow}/>

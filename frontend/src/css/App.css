@@ -1,8 +1,23 @@
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../font/SourceSansPro-Black.woff2') format('black2'),
+      url('../font/SourceSansPro-Black.woff') format('black');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../font/SourceSansPro-Regular.woff2') format('regular2'),
+      url('../font/SourceSansPro-Regular.woff') format('regular');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+}
 ul{
   display: inline-block;
   position: relative;
   left: 30%;
-  transform: translateY(-20%);
   list-style: none;
 
   }
@@ -13,7 +28,6 @@ ul li {
 }
 .logo{
   display: inline-block;
-  padding-left: 3%;
   font-size: 50px;
   color: white;
   margin: 10px;
@@ -38,9 +52,11 @@ ul li {
 }
 #root{
   width: 1800px;
+    font-family: 'Source Sans Pro';
 }
 .p_insert_body{
   margin: 20px;
+  margin-left: 5%;
 }
 .add:hover{
   color: white;

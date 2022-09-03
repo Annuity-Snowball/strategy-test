@@ -9,7 +9,9 @@ export default function Insert() {
     <Portfolio />
     <PortfolioPrint/>
     <Graph/>
-    <BoxModel color="rgb(242,231,254)"/>
+    <div className="p_insert_body">
+      <BoxModel color="rgb(242,231,254)"/>
+    </div>
     </>
   )
 }

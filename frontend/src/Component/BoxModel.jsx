@@ -7,14 +7,12 @@ export default function BoxModel(props) {
     const style={
         width : '300px',
         height : '600px',
-        boxShadow : '0px 0px 3px 2px beige',
         borderRadius : '30px',
         background : props.color,
         float : 'left',
-        marginLeft : '5%',
-        marginTop : "3%",
+        marginRight : '5%',
+        marginBottom : "3%",
         padding : '15px',
-        
       };
       useEffect ( () =>{
         setPeriod(props.period);
@@ -33,7 +31,7 @@ export default function BoxModel(props) {
         <div style={{ height : '30px',position : 'relative',marginTop : '5px',marginBottom : '5px'}}>
         {strategy_nums.map( (strategy_num) =>(
           <>
-          <img className="strategycircle"style={{width : '30px',
+        <img className="strategycircle"style={{width : '30px',
         position : 'absolute',
         top : 0,
         left : (strategy_num*15)
@@ -56,7 +54,7 @@ export default function BoxModel(props) {
         </div>
         <div style={{height : '30px',display :'flex',alignItems : 'center'}}>
         <h1 style={{fontSize : '20px',width : '220px'}}>수령 금액</h1>
-        <div style={{width : '100px',height : '17px',textDecoration : 'underline',textAlign :'right'}}>{money}년</div>
+        <div style={{width : '100px',height : '17px',textDecoration : 'underline',textAlign :'right'}}>{money}만원</div>
         </div>
       </div>
     </>

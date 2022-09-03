@@ -1,12 +1,32 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Route,Routes,NavLink } from "react-router-dom";
-import '../App.css';
-import '../Banner.css';
-export default function Banner() {
+import '../css/App.css';
+import '../css/Banner.css';
+import Logo from '../img/Logo.png'
+import Modal from './Modal';
+import styled from 'styled-components';
 
-    const Title = (props) => {
+const Button =styled.button`
+  color: rgb(112,239,222);
+  background-color : black;
+  font-size : 16px;
+  border : none;
+  padding : 0px;
+`;
+export default function Banner() {
+  const imgstyle ={
+    width : '50px',
+    display : 'inline-block',
+    marginBottom : '20px',
+}
+  const [isopen,setIsopen]=useState(false);
+
+  const OnClick = () =>{
+    setIsopen(true);
+  }
+  const Title = (props) => {
         return (
-          <NavLink to="/"><h1 className='logo'>{props.title}</h1></NavLink>
+          <NavLink style={{verticalAlign:'middle'}}to="/"><img src={Logo} style={imgstyle}/><h1 className='logo'>{props.title}</h1></NavLink>
         );
       }
   return (
@@ -19,10 +39,14 @@ export default function Banner() {
                 <NavLink to="/Recommand"><li>포트폴리오 추천</li></NavLink>
                 <NavLink to="/shopping"><li>프트폴리오 쇼핑</li></NavLink>
                 <NavLink to="/notice"><li>공지사항</li></NavLink>
-                <NavLink to="/login"><li className="Loginbanner">Log In</li></NavLink>
+                 <li className="Loginbanner"><Button onClick={OnClick}>Log In</Button></li>
                 <NavLink to="/signup"><li className="Signupbanner">Sign up</li></NavLink>
               </ul>
             </nav>
+            {
+            isopen && (<Modal open={isopen}
+           onClose={ () => {setIsopen(false);}}
+          />)}
     </>
   )
 }

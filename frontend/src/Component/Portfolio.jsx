@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
-import '../App.css';
-import '../Portfolio.css';
+import '../css/App.css';
+import '../css/Portfolio.css';
 import First from './First';
 export default function Portfolio() {
     const [click,setClick]=useState(true);
