@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import data from './Table.json'
-import '../css/table.css'
+import '../css/App.css'
 export default function PrintPF() {
     const [contents,setContent]=useState(data);
     const [total,setTotal]=useState(3800);
@@ -23,8 +23,8 @@ export default function PrintPF() {
                 contents.map( (content) => (
                 <tr>
                 <td >{content.type}</td>
-                <td>{content.notbenefit}</td>
-                <td>{content.taxbenefit}</td>
+                <td >{content.notbenefit}</td>
+                <td >{content.taxbenefit}</td>
                 </tr>
                     ))}
             </tbody>

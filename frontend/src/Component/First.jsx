@@ -20,8 +20,8 @@ export default function First() {
         setClick1( (prev) => (!prev) );
       }
     const style = {
-        width : '300px',
-        height : '600px',
+        width : '15%',
+        height : '400px',
         display : 'inline-block',
         verticalAlign: 'middle',
         position : 'relative',
@@ -34,6 +34,15 @@ export default function First() {
         marginLeft : '20px',
     }
     const handlePortfolioproduce =(e) =>{
+
+        if(sum !== 100)
+        {
+            alert("포트폴리오를 100퍼로 맞춰주세요");
+        }
+        else{
+            alert("포트폴리오 등록 완료!");
+            setList([]);
+        }
     }
         return (
         <>
@@ -50,7 +59,7 @@ export default function First() {
             </div>
             </div>
             {strategy_lists.map( (strategy_list) =>(
-                <div className='strategytitle'>
+                <div key={strategy_list.id} className='strategytitle'>
                 <div className="strategyname">
                     {strategy_list.strategyName}
                 </div>
@@ -65,7 +74,7 @@ export default function First() {
             <div className='btn insert' onClick={handlePortfolioinsert}>
                 + 전략추가하기
             </div>
-        <div style={{width :'300px',height : '180px',position : 'absolute', bottom : '0px'}}>
+        <div style={{width :'100%',height : '180px',position : 'absolute', bottom : '0px'}}>
         <div className='btn portfoliosubmit'>
                 <div style={{width : '50%',textAlign : 'center'}}>투자기간</div>
                 <input style={{width : '50%',textAlign : 'center',backgroundColor : 'rgb(94,94,94)',border : "none"}}defaultValue={"30년"}></input>
@@ -93,12 +102,12 @@ export default function First() {
 
         function Second(props) {
             const [click,setClick]=useState(false);
-            const [select,setSelect]=useState("자산직접선택");
+            const [select,setSelect]=useState("");
 
             const [tab,setTab]=useState("");
             const style = {
-                width : '260px',
-                height : '500px',
+                width : '15%',
+                height : '400px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
                 boxShadow: '1px 1px 3px 1px #dadce0',
@@ -130,12 +139,54 @@ export default function First() {
                         기준입력
                     </div>
                 </div>
-                {click ? (
+                { (click && select==="기준입력")? (
                 <Third/>
+                ) : null}
+                { (click && select==="자산직접선택")? (
+                <Asset/>
                 ) : null}
                 </>
                 );
         }
+        function Asset() {
+
+            const [click,setClick]=useState(false);
+            const [select,setSelect]=useState("벨류지표");
+            const [tab,setTab]=useState("");
+        
+            const handlePortfolioinsert = () =>{
+                setClick( (prev) => !prev );
+              }
+              const style = {
+                width : '15%',
+                height : '400px',
+                display : 'inline-block',
+                verticalAlign: 'middle',
+                boxShadow: '1px 1px 3px 1px #dadce0',
+                marginLeft : '10px',
+                }
+            useEffect( () =>(
+                setClick( (prev) => {if(tab === ''){
+                    return false }
+                    else{
+                        return true
+                    }} )
+            ),[tab])
+          return (
+            <>
+                <img style={imgstyle} alt="화살표" src={arrow}/>
+                <div style={style}>
+                    <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="ETF" onClick={ (e) => {setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); setSelect(e.target.innerText);}}>
+                        ETF
+                    </div>
+                </div>
+                {click ? (
+                <Asset1 name={select}/>
+                ) : null}
+                </>
+          )
+        }
+
         function Third() {
 
             const [click,setClick]=useState(false);
@@ -146,8 +197,8 @@ export default function First() {
                 setClick( (prev) => !prev );
               }
               const style = {
-                width : '250px',
-                height : '500px',
+                width : '15%',
+                height : '400px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
                 boxShadow: '1px 1px 3px 1px #dadce0',
@@ -205,8 +256,8 @@ export default function First() {
                 setClick( (prev) => !prev );
               }
               const style = {
-                width : '250px',
-                height : '500px',
+                width : '15%',
+                height : '400px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
                 boxShadow: '1px 1px 3px 1px #dadce0',
@@ -230,6 +281,59 @@ export default function First() {
                     </div>
                 </div>
                 <A/>
+                </>
+          )
+        }
+        function Asset1(props) {
+            const [click,setClick]=useState(false);
+            const [select,setSelect]=useState("");
+            const [tab,setTab]=useState("");
+            useEffect( () =>(
+                setClick( (prev) => {if(tab === ''){
+                    return false }
+                    else{
+                    return true
+                    }})
+            ),[tab])
+
+            const A = () =>{
+                if( select==="PBR")
+                {
+                    return click ? (<PBR/>) : null;
+                }
+                else if(select==="PER"){
+                    return click ? (<PER/>) : null;
+                }
+            }
+            const handlePortfolioinsert = () =>{
+                setClick( (prev) => !prev );
+              }
+              const style = {
+                width : '15%',
+                height : '400px',
+                display : 'inline-block',
+                verticalAlign: 'middle',
+                boxShadow: '1px 1px 3px 1px #dadce0',
+                marginLeft : '10px',
+                }
+          return (
+            <>
+                <img style={imgstyle} alt="화살표" src={arrow}/>
+                <div style={style}>
+                  <div className='btn name'>
+                    {props.name}
+                  </div>
+                <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER" onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); }}>
+                        PER
+                    </div>
+                    <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR" onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}}); }}>
+                        PBR
+                    </div>
+                    <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="등등...." onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}});}}>
+                        등등....
+                    </div>
+                </div>
+                {/* <A/> */}
                 </>
           )
         }
@@ -268,8 +372,8 @@ export default function First() {
                 }
             }
               const style = {
-                width : '300px',
-                height : '500px',
+                width : '15%',
+                height : '400px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
                 boxShadow: '1px 1px 3px 1px #dadce0',
@@ -281,12 +385,12 @@ export default function First() {
                 <div style={style}>
                 <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PBR 고" onClick={ (e) => {setTab('curr');}}>
                     <form onSubmit={handleSubmit}>
-                        <input name="name" style={{width : '30%'}} defaultValue={"PBR 고"}></input> <input style={{width : '30%'}} name="num" placeholder='몇개를 담겠습니까?'defaultValue=""></input><input name="percent"style={{width : '30%'}}placeholder='몇퍼로 하시겠습니까?' defaultValue=""></input><button>전송</button>
+                        <input name="name" style={{width : '30%'}} defaultValue={"PBR 고"}></input> <input style={{width : '30%'}} name="num" placeholder='몇개를 담겠습니까?'defaultValue=""></input><input name="percent"style={{width : '30%'}}placeholder='몇퍼로 하시겠습니까?' defaultValue=""></input><button>전략등록완료</button>
                     </form>
                     </div>
                     <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR 저" onClick={ (e) => {setTab('prev1'); }}>
                     <form onSubmit={handleSubmit}>
-                    <input name="name" style={{width : '30%'}} defaultValue={"PBR 저"}></input> <input style={{width : '30%'}} name="num" placeholder='몇개를 담겠습니까?'defaultValue=""></input><input name="percent"style={{width : '30%'}}placeholder='몇퍼로 하시겠습니까?' defaultValue=""></input><button>전송</button>
+                    <input name="name" style={{width : '30%'}} defaultValue={"PBR 저"}></input> <input style={{width : '30%'}} name="num" placeholder='몇개를 담겠습니까?'defaultValue=""></input><input name="percent"style={{width : '30%'}}placeholder='몇퍼로 하시겠습니까?' defaultValue=""></input><button>전략등록완료</button>
                     </form>
                     </div>
                     <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="전략명" onClick={ (e) => {setTab('prev2');  setClick( (prev) => !prev );}}>
@@ -294,6 +398,9 @@ export default function First() {
                     </div>
                     {click ?
                     <>
+                    <div className='btn'>
+                    <input placeholder='전락명'></input>
+                    </div>
                     <div className='btn'>
                     <input placeholder='몇퍼센트이상이하인지'></input>
                     </div>
@@ -350,8 +457,8 @@ export default function First() {
                 }
             }
               const style = {
-                width : '300px',
-                height : '500px',
+                width : '15%',
+                height : '400px',
                 display : 'inline-block',
                 verticalAlign: 'middle',
                 boxShadow: '1px 1px 3px 1px #dadce0',
@@ -376,6 +483,9 @@ export default function First() {
                     </div>
                     {click ?
                     <>
+                    <div className='btn'>
+                    <input placeholder='전락명'></input>
+                    </div>
                     <div className='btn'>
                     <input placeholder='몇퍼센트이상이하인지'></input>
                     </div>

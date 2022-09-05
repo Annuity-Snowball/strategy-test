@@ -5,12 +5,12 @@ export default function BoxModel(props) {
     const [period,setPeriod]=useState(props.period);
     const [money,setMoney]=useState(props.money);
     const style={
-        width : '300px',
+        width : '19%',
         height : '600px',
         borderRadius : '30px',
         background : props.color,
         float : 'left',
-        marginRight : '5%',
+        marginRight : '3%',
         marginBottom : "3%",
         padding : '15px',
       };

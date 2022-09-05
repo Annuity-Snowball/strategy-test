@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import '../css/App.css';
-import '../css/Portfolio.css';
 import First from './First';
 export default function Portfolio() {
-    const [click,setClick]=useState(true);
+    const [click,setClick]=useState(false);
     const [portfolio_lists,setPortfolio_lists]=useState(["20년 만기 퇴직 연금","22년 문노인 노후연금저축"]);
 
     const handlePortfolioinsert = () =>{
@@ -17,7 +16,7 @@ export default function Portfolio() {
     <br/>
     <button className="add" onClick={handlePortfolioinsert}>+ 포트폴리오 추가 </button>
     {
-      portfolio_lists.map( (portfolio_list) =>(
+      portfolio_lists.map( (portfolio_list,index) =>(
         <>
         <> </><div style={{display : "inline-block"}}> | # {portfolio_list}</div>
         </>

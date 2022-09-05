@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
 import '../css/App.css';
-import '../css/Recommand.css'
 import Button from '@mui/material/Button';
 import Recommand2 from './Recommand2'
 import styled from 'styled-components';
@@ -17,7 +16,7 @@ export default function Recommand1() {
     const [paiement,setPaiement]=useState("");
     const [click,setClick]=useState(false);
     const style={
-        width : '1000px',
+        width : '60%',
         height : '70px',
         boxShadow: '1px 1px 3px 1px #dadce0',
         display : 'inline-block',

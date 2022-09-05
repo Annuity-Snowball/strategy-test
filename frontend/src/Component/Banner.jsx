@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
 import {Route,Routes,NavLink } from "react-router-dom";
 import '../css/App.css';
-import '../css/Banner.css';
 import Logo from '../img/Logo.png'
 import Modal from './Modal';
 import styled from 'styled-components';
