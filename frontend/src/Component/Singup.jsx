@@ -192,7 +192,7 @@ export default function Singup() {
         console.log(Reigster)
 
         try{
-            const request = await axios(
+            const response = await axios(
                 {
                     method : "post",
                     url : "http://localhost:8000/service_api/user/",
