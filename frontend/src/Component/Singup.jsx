@@ -1,103 +1,243 @@
 import React,{useState} from 'react'
 import styled from 'styled-components';
 import {Route,Routes,NavLink } from "react-router-dom";
-
+import { ReactComponent as Profile } from "../img/Profile.svg";
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="current"
+  height="current"
+  viewBox="0 0 24 24"
+></svg>
 const Frame =styled.div`
-            width: 400px;
-            margin: 0 auto;
-            div{
-                text-align: left;
-                margin-bottom: 20px;
-            }
-            button{
-                text-align: center;
-            }
-`
-const Button =styled.button`
-        border-radius: 5px;
-        width: 300px;
-        border: none;
-        letter-spacing: .5em;
-        font-size: 1.2em;
-        background-color:black;
-        color: rgb(112,239,222);
-        height: 40px;
-        margin-left: 50px;
-        margin-bottom : 50px;
-        &:active{
-        color: white;
-        background-color :'black';
-        }
-`
-const Personalinformation =styled.input`
 
-width: 98%; 
-margin: 0px; 
-height: 46px; 
-padding: 0px;
-`
-const PhoneNumber =styled.input`
+`;
+const Login1 =styled.div`
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 300;
+font-size: 30px;
+line-height: 41px;
+letter-spacing: -1px;
+color: #000000;
+`;
+const Login2 =styled.div`
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 300;
+font-size: 18px;
+line-height: 25px;
+letter-spacing: -1px;
+color: #000000;
+`;
+const Title =styled.form`
+max-width : 500px;
+margin : 0 auto;
+display : flex;
+flex-direction: column;
+align-items:center;
+`;
+const Login3 =styled.div`
+margin-top : 51px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+line-height: 100%;
+text-align: center;
+letter-spacing: -0.408px;
+color: #3E3E3E;
+margin-bottom : 8px;
+`;
+const Login4 =styled.div`
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+text-align: center;
+letter-spacing: -0.408px;
+color: #999999;
+margin-bottom : 26px;
+`;
+const Login5 =styled.div`
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 16px;
+text-align: center;
+letter-spacing: -0.408px;
+color: #66C6A3;
+margin-top : 11px;
+margin-bottom : 31px;
+`;
 
-width: 28%; margin: 0px 5px; height: 46px; padding: 0px;
-`
-const Address =styled.input`
-width: 98%; margin: 0px; height: 46px; padding: 0px; margin-bottom: 10px;
-`
-const DetailAddress =styled.input`
-width: 98%; margin: 0px; height: 46px; padding: 0px;
-`
+const Frame1 = styled.div`
+display : flex;
+flex-direction: row;
+width : 100%;
+gap : 20px;
+`;
+const Frame2 = styled.div`
+display : flex;
+flex-direction: row;
+gap : 4px;
+`;
+const NameFrame=styled.div`
+width : calc( (100% - 20px) / 2);
+height: 87px;
+display : flex;
+flex-direction: column;
+gap : 8px;
+`;
+const EmailFrame=styled.div`
+margin-top : 30px;
+width : 100%;
+display : flex;
+flex-direction: column;
+gap : 8px;
+`;
 
+const NicknameFrame= styled.div`
+width : calc( (100% - 20px) / 2 );
+height: 87px;
+display : flex;
+flex-direction: column;
+gap : 8px;
+`
+const Req=styled.div`
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 10px;
+line-height: 100%;
+letter-spacing: -0.408px;
+color: ${props=>props.color};
+`
+const Text1=styled.div`
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: -0.408px;
+color: #2E2E2E;
+`;
+const Text2 =styled.div`
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 16px;
+letter-spacing: -0.408px;
+color: #66C6A3;
+`;
+const Input = styled.input`
+width : 100%;
+height : 44px;
+padding: 16px 10px;
+background: #F9F9FD;
+border: 0.5px solid #C9C6E1;
+border-radius: 5px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 100%;
+color: #C4C0DD;
+box-sizing: border-box;
+`;
+const Button=styled.button`
+width: 240px;
+height: 42px;
+background: #66C6A3;
+border-radius: 7px;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 19px;
+letter-spacing: -1px;
+border : none;
+margin-top: 72px;
+color: #FFFFFF;
+margin-left :auto;
+margin-bottom : 87px;
+transform:translate(-50%,0);
+`;
 
 export default function Singup() {
-
-const handleSubmit = (e) =>{
-    e.preventDefault(); //전송시 새로고침 방지
-}
+    const [name,setName]=useState("");
+    const [nickname,setNickname]=useState("");
+    const [password,setPassword]=useState("");
+    const [email,setEmail]=useState("");
+    const handleName = (e) =>{
+        setName(e.target.value);
+    };
+    const handleNickname= (e)=>{
+        setNickname(e.target.value);
+    };
+    const handleEmail =(e)=>{
+        setEmail(e.target.value);
+    };
+    const handlePassword = (e)=>{
+        setPassword(e.target.value);
+    }
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        // consts-={
+        //     name : name,
+        //     nickname : nickname,
+        //     password : password,
+        //     email : email,}
+        
+    }
   return (
     <>
-            <div style={{textAlign:'center'}}><h1 style={{fontSize :'50px'}}>JOIN</h1></div>
-            <div style={{textAlign:'center'}}>Hello we are MiddleNote</div>
-            <br/>
-            <br/>
-            <Frame>
-                <form method="POST" onSubmit={handleSubmit}>
-                <div>
-                    <label for="name" class="after">E-Mail *</label>
-                    <Personalinformation type="text"/>
-                </div>
-                <div>
-                    <label for="name" class="after">Password *</label>
-                    <Personalinformation type="text"/>
-                </div>
-                <div>
-                    <label for="name" class="after">Check Password*</label>
-                    <Personalinformation type="text"/>
-                </div>
-                <div>
-                    <label for="name" class="after">Name *</label><br/>
-                    <Personalinformation type="text"/>
-                </div>
-                <div>
-                    <label class="after" >성별 *</label><br/>
-                    <input id="man" name="gender" type="radio" value="man"/>
-                    <label for="man" id="man">남자</label>
-                    <input id="women" name="gender" type="radio" value="women"/>
-                    <label for="women" id="women">여자</label>
-                </div>
-                <div>
-                    <label class="after" >Phone Number *</label><br/>
-                    <PhoneNumber id="phone" name="phone" type="text"/>- 
-                    <PhoneNumber id="phone" name="phone" type="text"/>- 
-                    <PhoneNumber id="phone" name="phone" type="text"/>
-                </div>
-                <div>
-                    <label class="after" >Address *</label><br/>
-                    <Address id="address" name="address" type="text"/><br/>
-                    <DetailAddress id="detail_address"/>
-                </div>
-                <NavLink to="/"><Button type="submit">Sign up</Button></NavLink>
-                </form>
-            </Frame>
+    <div className='LoginLayout'>
+        <div className='Logintitle'>
+            <Login1>회원가입</Login1>
+            <Login2>SIGN UP OUR MEMBERSHIP</Login2>
+        </div>
+    </div>
+    <Title onSubmit={handleSubmit}>
+            <Login3>가입정보입력</Login3>
+            <Login4>아래의 필수 정보를 입력하시면 가입이 완료됩니다.</Login4>
+            <Profile/>
+            <Login5>프로필 사진 변경</Login5>
+            <Frame1>
+                <NameFrame>
+                    <Frame2>
+                    <Text1>이름</Text1><Req color="#F53A5C;">(필수)</Req>
+                    </Frame2>
+                    <Input name="name"placeholder='본명을 입력하세요' onChange={handleName}></Input>
+                    <Text2>한글, 영문 대소문자만 가능합니다</Text2>
+                </NameFrame>
+                <NicknameFrame>
+                    <Frame2>
+                    <Text1>이름</Text1><Req color="#F53A5C;">(필수)</Req>
+                    </Frame2>
+                    <Input nickname="nickname"placeholder='원하시는 닉네임을 입력하세요' onChange={handleNickname} ></Input>
+                    <Text2>4~13자리의 한글,영문 대소문자, 숫자 사용가능</Text2>
+                </NicknameFrame>
+            </Frame1>
+            <EmailFrame>
+                <Frame2>
+                <Text1>이메일</Text1><Req color="#F53A5C;">(필수)</Req>
+                </Frame2>
+                <Input email="email" placeholder='이메일을 입력하세요' onChange={handleEmail}></Input>
+                <Text2>한글, 영문 대소문자만 가능합니다</Text2>
+            </EmailFrame>
+            <EmailFrame>
+                <Frame2>
+                <Text1>비밀번호 입력</Text1><Req color="#F53A5C;">(필수)</Req>
+                </Frame2>
+                <Input placeholder='비밀번호 입력'></Input>
+                <Input password="password"placeholder='비밀번호 확인' onChange={{handlePassword}}></Input>
+                <Text2>비밀번호 확인완료</Text2>
+            </EmailFrame>
+            <Button>가입완료</Button>
+    </Title>
     </>
   );
 }

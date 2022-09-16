@@ -1,8 +1,180 @@
 import { border } from '@chakra-ui/react';
 import React,{useState,useEffect} from 'react'
 import arrow from '../img/arrow.png'
+import styled from 'styled-components';
+import { ReactComponent as Ten } from "../img/ten.svg";
+import { ReactComponent as BlackArrow } from "../img/blackarrow.svg"
+import { ReactComponent as WhiteArrow } from "../img/whitearrow.svg"
 // import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
+
+const InputFrame = styled.div`
+display : flex;
+flex-direction: row;
+gap : 10px;
+align-items : center;
+`;
+const Frame = styled.div`
+width : 17.9%;
+height: 428px;
+display : flex;
+padding : 14px 14px 0px 14px;
+flex-direction: column;
+align-items : center;
+background: #FFFFFF;
+border: 1px solid #E7E7E7;
+border-radius: 7px;
+box-sizing: border-box;
+`;
+const Input = styled.input`
+    width : 100%;
+    height : 36px;
+    padding: 16px 10px;
+    background: #F9F9FD;
+    border: 0.5px solid #C9C6E1;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: #C4C0DD;
+    letter-spacing: -0.5px;
+`;
+const Text = styled.div`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 100%;
+letter-spacing: -0.5px;
+color: #282828;
+margin-top : 16px;
+margin-left : auto;
+`;
+const Text2 = styled.div`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 100%;
+letter-spacing: -0.5px;
+color: #282828;
+margin-top : 23px;
+`;
+const Text3 =styled.div`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 100%;
+text-align: center;
+letter-spacing: -0.5px;
+color: #9D9D9D;
+margin-top : 24px;
+`;
+const Title = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 9px;
+  border-top: 2px solid #66C6A3;
+  border-bottom: 1px solid #66C6A3;
+  box-sizing: border-box;
+  padding : 9px 0px;
+`;
+const Title1 = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding : 9px 0px;
+`;
+const SgyButton = styled.div`
+margin-top : 12px;
+display : flex;
+gap : 14px;
+justify-content: center;
+width : 82%;
+height: 37px;
+background: #484848;
+border-radius: 30px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 100%;
+display: flex;
+align-items: center;
+letter-spacing: -0.5px;
+color: #FFFFFF;
+`;
+const Button = styled.button`
+margin-top : auto;
+width : calc(100% + 28px);
+background: #66C6A3;
+border-radius: 0px 0px 7px 7px;
+border : none;
+height: 40px;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 19px;
+color: #FFFFFF;
+`;
+const Button1 = styled.button`
+width: 72px;
+height: 36px;
+background: #636363;
+border-radius: 7px;
+border : none;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 100%;
+letter-spacing: -0.5px;
+color: #FFFFFF;
+`
+const Frame2 = styled.div`
+width : 16.66%;
+height: 426px;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: -0.5px;
+color: #282828;
+background: #FFFFFF;
+border: 1px solid #E7E7E7;
+border-radius: 7px;
+box-sizing: border-box;
+display : flex;
+flex-direction: column;
+align-items: center;
+`;
+
+const FormFrame = styled.form`
+width : 90%;
+height : 96px;
+display : flex;
+flex-direction: column;
+justify-content : center;
+gap : 8px;
+border-bottom: 1px solid #E7E7E7;
+`;
+
+const Flex = styled.div`
+display : flex;
+flex-direction: row;
+justify-content : space-between;
+align-items : center;
+`;
 export default function First() {
     const [click1,setClick1]=useState(false);
     const [strategy_lists,setList]=useState([]);
@@ -19,15 +191,6 @@ export default function First() {
     const handlePortfolioinsert = () =>{
         setClick1( (prev) => (!prev) );
       }
-    const style = {
-        width : '15%',
-        height : '400px',
-        display : 'inline-block',
-        verticalAlign: 'middle',
-        position : 'relative',
-        backgroundColor : 'rgb(255,255,255)',
-        boxShadow: '1px 1px 3px 1px #dadce0',
-        }
     const imgstyle ={
         width : '30px',
         display : 'inline-block',
@@ -45,74 +208,35 @@ export default function First() {
         }
     }
         return (
-        <>
-        <div style={style}>
-            <div className='strategytitle'>
-            <div className="strategyname">
-                전략명
-            </div>
-            <div className="strategynum">
-                개수
-            </div>
-            <div className="strategyrate">
-                <div className='percent'>%</div>
-            </div>
-            </div>
+        <InputFrame>
+        <Frame>
+            <Input placeholder='포트폴리오 제목을 입력하세요'></Input>
+            <Text>전략 총 {strategy_lists.length}개</Text>
+            <Title>
+            <div className="strategyname">전략명</div>
+            <div className="strategynum">개수</div>
+            <div className="strategyrate">%</div>
+            </Title>
             {strategy_lists.map( (strategy_list) =>(
-                <div key={strategy_list.id} className='strategytitle'>
-                <div className="strategyname">
-                    {strategy_list.strategyName}
-                </div>
-                <div className="strategynum">
-                    {strategy_list.strategynum}개
-                </div>
-                <div className="strategyrate">
-                <div className='percent'>{strategy_list.rate}%</div>
-                </div>
-                </div>
+                <Title1 key={strategy_list.id}>
+                <div className="strategyname">{strategy_list.strategyName}</div>
+                <div className="strategynum">{strategy_list.strategynum}</div>
+                <div className="strategyrate">{strategy_list.rate}</div>
+                </Title1>
             ))}
-            <div className='btn insert' onClick={handlePortfolioinsert}>
-                + 전략추가하기
-            </div>
-        <div style={{width :'100%',height : '180px',position : 'absolute', bottom : '0px'}}>
-        <div className='btn portfoliosubmit'>
-                <div style={{width : '50%',textAlign : 'center'}}>투자기간</div>
-                <input style={{width : '50%',textAlign : 'center',backgroundColor : 'rgb(94,94,94)',border : "none"}}defaultValue={"30년"}></input>
-            </div>
-            <div className='btn portfoliosubmit'>
-                <div style={{width : '50%',textAlign : 'center'}}>납입금액</div>
-                <input style={{width : '50%',textAlign : 'center',backgroundColor : 'rgb(94,94,94)',border : "none"}}defaultValue={"100만원"}></input>
-            </div>
-            <div className='btn portfoliosubmit'>
-                <div style={{width : '50%',textAlign : 'center'}}>납입방법</div>
-                <input style={{width : '50%',textAlign : 'center',backgroundColor : 'rgb(94,94,94)',border : "none"}}defaultValue={"매월"}></input>
-            </div>
-            <div className='btn portfoliosubmit'>
-                <div style={{width : '148px',textAlign : 'center'}}></div>
-                <button type= "submit" style={{width : '152px',textAlign : 'center',border : "none"}} onClick={handlePortfolioproduce}>제출</button>
-            </div>
-            </div>
-            </div>
-        
-        {click1 ? (
-        <Second/>
-        ) : null}
-        </>
+            { strategy_lists.length ? null : <Text2>등록된 전략이 없습니다.</Text2>}
+            <SgyButton onClick={handlePortfolioinsert}>새 전략 추가<Ten/></SgyButton>
+            <Text3>100% 전략을 더 채우시면 포트폴리오를<br/>제출 하실 수 있습니다.</Text3>
+            <Button>제출</Button>
+        </Frame>
+        <BlackArrow width="24px"/>
+        {click1 ? <Second/> : null}
+        </InputFrame>
         );
-
         function Second(props) {
             const [click,setClick]=useState(false);
             const [select,setSelect]=useState("");
-
             const [tab,setTab]=useState("");
-            const style = {
-                width : '15%',
-                height : '400px',
-                display : 'inline-block',
-                verticalAlign: 'middle',
-                boxShadow: '1px 1px 3px 1px #dadce0',
-                marginLeft : '10px',
-                }
             useEffect( () =>(
                 setClick( (prev) => {if(tab === ''){
                     return false }
@@ -124,21 +248,21 @@ export default function First() {
             //tab을 먼저 수정한 후에 click값을 수정하게 진행
                 return (
                 <>
-                <img style={imgstyle} alt="화살표" src={arrow}/>
-                <div style={style}>
+                <Frame2>
                     <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="자산직접선택" 
                     onClick={(e) => { setTab( (prev) => { if(prev !== 'curr'){return 'curr'}else{return""}});
-
                     setSelect(e.target.innerText);}}>
                         자산직접선택
-                        {/* <ArrowRightIcon style={{width : '30px',color : 'white'}}></ArrowRightIcon> */}
+                    {tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev' ? 'active' : ''}`} name="기준입력" 
                     onClick={ (e) => {setTab((prev) => { if(prev !== 'prev'){return 'prev'}else{return""}}); 
                     setSelect(e.target.innerText);}}>
                         기준입력
+                        {tab === 'prev' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
-                </div>
+                </Frame2>
+                <BlackArrow width="24px"/>
                 { (click && select==="기준입력")? (
                 <Third/>
                 ) : null}
@@ -157,14 +281,6 @@ export default function First() {
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
               }
-              const style = {
-                width : '15%',
-                height : '400px',
-                display : 'inline-block',
-                verticalAlign: 'middle',
-                boxShadow: '1px 1px 3px 1px #dadce0',
-                marginLeft : '10px',
-                }
             useEffect( () =>(
                 setClick( (prev) => {if(tab === ''){
                     return false }
@@ -174,12 +290,12 @@ export default function First() {
             ),[tab])
           return (
             <>
-                <img style={imgstyle} alt="화살표" src={arrow}/>
-                <div style={style}>
+                <Frame2>
                     <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="ETF" onClick={ (e) => {setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); setSelect(e.target.innerText);}}>
-                        ETF
+                        ETF{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
-                </div>
+                </Frame2>
+                <BlackArrow width="24px"/>
                 {click ? (
                 <Asset1 name={select}/>
                 ) : null}
@@ -196,14 +312,6 @@ export default function First() {
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
               }
-              const style = {
-                width : '15%',
-                height : '400px',
-                display : 'inline-block',
-                verticalAlign: 'middle',
-                boxShadow: '1px 1px 3px 1px #dadce0',
-                marginLeft : '10px',
-                }
             useEffect( () =>(
                 setClick( (prev) => {if(tab === ''){
                     return false }
@@ -213,18 +321,18 @@ export default function First() {
             ),[tab])
           return (
             <>
-                <img style={imgstyle} alt="화살표" src={arrow}/>
-                <div style={style}>
+                <Frame2>
                     <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="벨류지표" onClick={ (e) => {setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); setSelect(e.target.innerText);}}>
-                        벨류지표
+                        벨류지표{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="펀더멘탈지표" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}}); setSelect(e.target.innerText);}}>
-                        펀더멘탈지표
+                        펀더멘탈지표{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="모멘텀지표" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}}); setSelect(e.target.innerText);}}>
-                        모멘텀지표
+                        모멘텀지표{tab === 'prev2' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
-                </div>
+                </Frame2>
+                <BlackArrow width="24px"/>
                 {click ? (
                 <Fourth name={select}/>
                 ) : null}
@@ -255,31 +363,23 @@ export default function First() {
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
               }
-              const style = {
-                width : '15%',
-                height : '400px',
-                display : 'inline-block',
-                verticalAlign: 'middle',
-                boxShadow: '1px 1px 3px 1px #dadce0',
-                marginLeft : '10px',
-                }
           return (
             <>
-                <img style={imgstyle} alt="화살표" src={arrow}/>
-                <div style={style}>
+                <Frame2>
                   <div className='btn name'>
                     {props.name}
                   </div>
                 <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER" onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); }}>
-                        PER
+                        PER{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR" onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}}); }}>
-                        PBR
+                        PBR{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="등등...." onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}});}}>
-                        등등....
+                        등등....{tab === 'prev2' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
-                </div>
+                </Frame2>
+                <BlackArrow width="24px"/>
                 <A/>
                 </>
           )
@@ -308,31 +408,22 @@ export default function First() {
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
               }
-              const style = {
-                width : '15%',
-                height : '400px',
-                display : 'inline-block',
-                verticalAlign: 'middle',
-                boxShadow: '1px 1px 3px 1px #dadce0',
-                marginLeft : '10px',
-                }
           return (
             <>
-                <img style={imgstyle} alt="화살표" src={arrow}/>
-                <div style={style}>
+                <Frame2>
                   <div className='btn name'>
                     {props.name}
                   </div>
                 <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER" onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); }}>
-                        PER
+                        PER{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR" onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}}); }}>
-                        PBR
+                        PBR{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="등등...." onClick={ (e) => {setSelect(e.target.innerText); setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}});}}>
-                        등등....
+                        등등....{tab === 'prev2' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
-                </div>
+                </Frame2>
                 {/* <A/> */}
                 </>
           )
@@ -371,53 +462,26 @@ export default function First() {
                     alert("100퍼를 맞춰주세요");
                 }
             }
-              const style = {
-                width : '15%',
-                height : '400px',
-                display : 'inline-block',
-                verticalAlign: 'middle',
-                boxShadow: '1px 1px 3px 1px #dadce0',
-                marginLeft : '10px',
-                }
           return (
             <>
-                <img style={imgstyle} alt="화살표" src={arrow}/>
-                <div style={style}>
-                <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PBR 고" onClick={ (e) => {setTab('curr');}}>
-                    <form onSubmit={handleSubmit}>
-                        <input name="name" style={{width : '30%'}} defaultValue={"PBR 고"}></input> <input style={{width : '30%'}} name="num" placeholder='몇개를 담겠습니까?'defaultValue=""></input><input name="percent"style={{width : '30%'}}placeholder='몇퍼로 하시겠습니까?' defaultValue=""></input><button>전략등록완료</button>
-                    </form>
-                    </div>
-                    <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR 저" onClick={ (e) => {setTab('prev1'); }}>
-                    <form onSubmit={handleSubmit}>
-                    <input name="name" style={{width : '30%'}} defaultValue={"PBR 저"}></input> <input style={{width : '30%'}} name="num" placeholder='몇개를 담겠습니까?'defaultValue=""></input><input name="percent"style={{width : '30%'}}placeholder='몇퍼로 하시겠습니까?' defaultValue=""></input><button>전략등록완료</button>
-                    </form>
-                    </div>
-                    <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="전략명" onClick={ (e) => {setTab('prev2');  setClick( (prev) => !prev );}}>
-                        수치사용자입력(클릭)
-                    </div>
-                    {click ?
-                    <>
-                    <div className='btn'>
-                    <input placeholder='전락명'></input>
-                    </div>
-                    <div className='btn'>
-                    <input placeholder='몇퍼센트이상이하인지'></input>
-                    </div>
-                    <div className='btn'>
-                    <input  placeholder='몇개를 담겠습니까?'></input>
-                    </div>
-                    <div className='btn'>
-                    <input  placeholder='몇퍼로 하시겠습니까?'></input>
-                    <button>전송</button>
-                    </div>
-                    </>
-                    : null}
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                <Frame2>
+                <div className='btn name'>
+                전략등록하기
                 </div>
+                    <FormFrame onSubmit={handleSubmit}>
+                    <Input name="name" placeholder="PBR 고"></Input><Flex><Input style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
+                    </FormFrame>
+                    <FormFrame onSubmit={handleSubmit}>
+                    <Input name="name" placeholder="PBR 저"></Input><Flex><Input style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
+                    </FormFrame>
+                    <FormFrame style={{height : "145px"}}>
+                    <Text style={{marginLeft : "0px"}}>수치정보입력으로 등록하기</Text>
+                    <Input name="name" placeholder="전락명"></Input>
+                    <Input name="name" placeholder="수량"></Input>
+                    <Flex><Input name="percent"style={{width : '46px'}}placeholder='%'></Input>~<Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
+                    </FormFrame>
+                    <Text3>3개중 하나 선택해주세요</Text3>
+                </Frame2>
                 </>
           )
         }
@@ -456,18 +520,9 @@ export default function First() {
                     alert("100퍼를 맞춰주세요");
                 }
             }
-              const style = {
-                width : '15%',
-                height : '400px',
-                display : 'inline-block',
-                verticalAlign: 'middle',
-                boxShadow: '1px 1px 3px 1px #dadce0',
-                marginLeft : '10px',
-                }
           return (
             <>
-                <img style={imgstyle} alt="화살표" src={arrow}/>
-                <div style={style}>
+                <Frame2>
                 <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER 고" onClick={ (e) => {setTab('curr');}}>
                     <form onSubmit={handleSubmit}>
                         <input name="name" style={{width : '30%'}} defaultValue={"PER 고"}></input> <input style={{width : '30%'}} name="num" placeholder='몇개를 담겠습니까?'defaultValue=""></input><input name="percent"style={{width : '30%'}}placeholder='몇퍼로 하시겠습니까?' defaultValue=""></input><button>전송</button>
@@ -502,7 +557,7 @@ export default function First() {
                     <br/>
                     <br/>
                     <br/>
-                </div>
+                </Frame2>
                 </>
           )
         }

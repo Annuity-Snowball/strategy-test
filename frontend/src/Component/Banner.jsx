@@ -1,51 +1,72 @@
 import React,{useState} from 'react'
-import {Route,Routes,NavLink } from "react-router-dom";
+import {Route,Routes,NavLink, Link } from "react-router-dom";
 import '../css/App.css';
-import Logo from '../img/Logo.png'
 import Modal from './Modal';
 import styled from 'styled-components';
+import { ReactComponent as Logo } from "../img/Logo.svg";
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="current"
+  height="current"
+  viewBox="0 0 24 24"
+>
+  <path fill="current" fill-rule="evenodd" d="...." />
+</svg>
 
-const Button =styled.button`
-  color: rgb(112,239,222);
-  background-color : black;
-  font-size : 16px;
-  border : none;
-  padding : 0px;
+const SubTitle = styled.div`
+width : auto;
+display : flex;
+flex-direction: row;
+gap: 37px;
+`;
+const Login =styled.button`
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+background: #66C6A3;
+color: #000000;
+border : none;
+`;
+const Signup =styled.button`
+margin-right : 37px;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px; 
+background: #66C6A3;
+padding:  0px;
+color: #000000;
+border : none;
 `;
 export default function Banner() {
-  const imgstyle ={
-    width : '50px',
-    display : 'inline-block',
-    marginBottom : '20px',
-}
   const [isopen,setIsopen]=useState(false);
 
   const OnClick = () =>{
     setIsopen(true);
   }
-  const Title = (props) => {
-        return (
-          <NavLink style={{verticalAlign:'middle'}}to="/"><img src={Logo} style={imgstyle}/><h1 className='logo'>{props.title}</h1></NavLink>
-        );
-      }
   return (
     <>
-            <nav className="App">
-              <Title title="Annuity snowball"/>
-              <ul className="banner">
-                <NavLink to="/"><li>우리는?</li></NavLink>
-                <NavLink to="/insert"><li >포트폴리오 등록</li></NavLink>
-                <NavLink to="/Recommand"><li>포트폴리오 추천</li></NavLink>
-                <NavLink to="/shopping"><li>프트폴리오 쇼핑</li></NavLink>
-                <NavLink to="/notice"><li>공지사항</li></NavLink>
-                 <li className="Loginbanner"><Button onClick={OnClick}>Log In</Button></li>
-                <NavLink to="/signup"><li className="Signupbanner">Sign up</li></NavLink>
-              </ul>
+            <div className='headertop'>
+            <SubTitle>
+            <Link to="/login"><Login>LOGIN</Login></Link>
+            <Link to="/join"><Signup>SIGNUP</Signup></Link>
+            </SubTitle>
+            </div>
+            <nav className="header">
+            <NavLink className='Logo'to="/"><Logo/></NavLink>
+            <ul>
+            <NavLink to="/"><li>우리는?</li></NavLink>
+            <NavLink to="/insert"><li >스노우 등록</li></NavLink>
+            <NavLink to="/myportfolio"><li>내 스노우</li></NavLink>
+            <NavLink to="/shopping"><li>스노우샾</li></NavLink>
+            <NavLink to="/notice"><li>NOTICE</li></NavLink>
+            </ul>
             </nav>
-            {
+
+
+            {/* {
             isopen && (<Modal open={isopen}
            onClose={ () => {setIsopen(false);}}
-          />)}
+          />)} */}
     </>
   )
 }

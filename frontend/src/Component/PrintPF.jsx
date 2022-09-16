@@ -1,22 +1,27 @@
 import React,{useState} from 'react'
 import data from './Table.json'
 import '../css/App.css'
+import styled from 'styled-components';
+const Frame = styled.div`
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+letter-spacing: -0.5px;
+color: #292929;
+`;
 export default function PrintPF() {
     const [contents,setContent]=useState(data);
     const [total,setTotal]=useState(3800);
   return (
-    <div className="p_insert_body">
-        <h1 style={{fontSize:"50px"}}>포트폴리오 출력</h1>
-        <br/>
-        <div className='app-container'>
+    <Frame>
         <table border={"1"}>
             <caption >총 납입 금액 : { `${total}`}만원</caption>
             <thead>
-                <tr>
                 <th>비교군</th>
                 <th>세제혜택x</th>
                 <th>세제혜택o</th>
-                </tr>
             </thead>
             <tbody>
                 {
@@ -29,9 +34,6 @@ export default function PrintPF() {
                     ))}
             </tbody>
         </table>
-        </div>
-        <br/>
-
-    </div>
+    </Frame>
   )
 }

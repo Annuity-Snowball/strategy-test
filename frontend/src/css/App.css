@@ -1,70 +1,116 @@
-@font-face {
-  font-family: 'Source Sans Pro';
-  src: url('../font/SourceSansPro-Black.woff2') format('black2'),
-      url('../font/SourceSansPro-Black.woff') format('black');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans&family=Roboto&display=swap');
+
+/* font-family: 'Noto Sans', sans-serif; */
+body{
+  width: auto;
+  margin: 0px;
+  padding: 0px;
 }
-@font-face {
-  font-family: 'Source Sans Pro';
-  src: url('../font/SourceSansPro-Regular.woff2') format('regular2'),
-      url('../font/SourceSansPro-Regular.woff') format('regular');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
+.headertop{
+  height: 34px;
+  width: auto;
+  max-width: 1440px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin : 0 auto;
+  background: #66C6A3;
 }
-ul{
-  display: inline-block;
-  list-style: none;
-  margin-left: auto;
-  margin-right: 2%;
-  }
-ul li {
-  display: inline-block;
-  margin: 7px;
-  color: white;
-}
-.logo{
-  display: inline-block;
-  font-size: 50px;
-  color: white;
-  margin: 10px;
-}
-.App{
-  width: 100%;
-  background-color: rgba(112,239,222,0.7);
-  background-color: #5e5e5e;
-  background-color: #131523;
+.header{
+  height: 78px;
+  width: auto;
+  max-width: 1440px;
+  margin : 0 auto;
+  background: #282828;
   display: flex;
   align-items: center;
 }
-.Loginbanner{
-  border: 2px solid rgb(112,239,222);
-  border-radius: 5px;
-  padding: 5px;
-  color: rgb(112,239,222);
+.Logo{
+  width: auto;
+  padding-top: 4px;
+  margin-left: 34px;
 }
-.Signupbanner{
-  border: 2px solid rgb(112,239,222);
-  border-radius: 5px;
-  padding: 5px;
-  color: rgb(112,239,222);
+footer{
+  height: 153px;
+  max-width: 1440px;
+  margin : 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #282828;
 }
-#root{
-    width: auto;
-    font-family: 'Source Sans Pro';
+.footerbanner{
+  height: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  margin-bottom: 37px;
+  gap: 24px;
+  list-style: none;
 }
-.p_insert_body{
-  margin: 20px;
-  margin-left: 5%;
+.footerbanner li{
+height: 15px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+color: #EDEDED;
+flex: none;
+order: 4;
+flex-grow: 0;
 }
-.add:hover{
-  color: white;
-  background-color: #131523;
+.footerdetail{
+height: 45px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+text-align: center;
+color: #EDEDED;
 }
-.add{
-  font-weight: bold;  
+ul{
+  height: 19px;
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  gap: 24px;
+  list-style:none;
+  margin: 0px;
+  margin-left: auto;
+  margin-right: 37px;
+}
+ul li{
+font-family:'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+color: #FFFFFF;
+}
+a{
+  text-decoration: none;
+}
+li, ol{
+  list-style: none;
+}
+.LoginLayout{
+height: 165px;
+background: #F5F5F5;
+max-width: 1440px;
+margin : 0 auto;
+}
+.Logintitle{
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 120px;
+  margin-top: 77px;
 }
 img{
   vertical-align: middle;
@@ -73,117 +119,57 @@ img{
   display: inline-block;
 }
 a li:hover{
-  color: rgb(112,239,222);
+  color: #66C6A3;
 }
 .active li{
-  color: rgb(112,239,222);
+  color: #66C6A3;;
 }
-*{
-  font-weight: bold;
-}
-
-
 .btn {
   background-color: white;
-  color: black;
-  width: 95%;
-  height: 10%;
+  color: #282828;
+  width: 100%;
+  height: 43px;
   display: flex;
-  align-items: center;
-  padding-left: 5%;
-}
-.btn.portfoliosubmit{
-  background-color:rgb(94,94,94);
-  color: black;
-  width: 100%;
-  height: 25%;
-  display: flex;
-  padding: 0px;
-  align-items: center;
-}
-.btn.portfoliosubmit div{
-  background-color:rgb(94,94,94);
-  color: white;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 0px 1px white inset;
-}
-.btn.portfoliosubmit input{
-  background-color:rgb(94,94,94);
-  color: white;
-  width: 100%;
-  height: 100%;
-  /* display: flex; */
-  box-shadow: 0px 0px 0px 1.5px white inset;
-}
-.btn.portfoliosubmit input:focus{
-  outline: 0;
-  box-shadow: 0px 0px 5px white inset;
-}
-.btn.portfoliosubmit button{
-  background-color:rgb(94,94,94);
-  color: white;
-  width: 100%;
-  height: 100%;
-  /* display: flex; */
-  box-shadow: 0px 0px 0px 1px white inset;
-}
-.btn.portfoliosubmit button:active{
-  background-color:rgb(94,94,94);
-  color: black;
-  width: 100%;
-  height: 100%;
-  /* display: flex; */
-  box-shadow: 0px 0px 15px white inset;
-}
-.btn.portfoliosubmit button:focus{
-  outline: 0;
-}
-.strategyname {
-  background-color: rgb(94,94,94);
-  color: white;
-  width: 30%;
-  height: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 1%;
-}
-.strategynum {
-  background-color: rgb(94,94,94);
-  color: white;
-  width: 30%;
-  height: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 1%;
-}
-.strategyrate {
-  background-color: rgb(94,94,94);
-  color: white;
-  width: 38%;
-  height: 100%;
-  display: inline-flex;
-  align-items: center;
-}
-.percent{
-  width: 85%;
-  text-align: right;
-  background-color: rgb(94,94,94);
-  color: white;
+  padding: 14px;
+  box-sizing: border-box;
+  position: relative;
 }
 .btn.active {
-  background-color: rgb(94,94,94);
-  color: white;
-  width: 95%;
-  height: 10%;
+  background-color: #FF7759;
+  color: #FFFFFF;
+  width: 100%;
+  height: 43px;
   display: flex;
-  align-items: center;
-  padding-left: 5%;
+  padding: 14px;
+  box-sizing: border-box;
+  position: relative;
+}
+.strategyname {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.5px;
+  color: #66C6A3;
+}
+.strategynum {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.5px;
+  color: #66C6A3;
+}
+.strategyrate {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -0.5px;
+  color: #66C6A3;
 }
 /* 부모아래에 있는 자식들을 수직정렬할수 있음 */
 .btn.insert{
@@ -198,11 +184,16 @@ a li:hover{
 .btn.name{
   align-items: center;
   justify-content: center;
-  background-color: rgb(94,94,94);
-  color: white;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #000000;
+  border: 1px solid #E7E7E7;
 }
 .strategytitle{
-  height: 10%;
+  width : auto;
 }
 .btn input{
   margin-left: auto;
@@ -228,9 +219,11 @@ a li:hover{
 
 
 table {
-  border: 1px solid white;
+  background: #FFFFFF;
+  border-radius: 5px;
   width: 100%;
   border-collapse:collapse;
+  border: 1px solid #E7E7E7;
 }
 th{
   text-align: left;
@@ -242,15 +235,53 @@ td{
   padding: 8px;
   font-size: 18px;
 }
-th {
+thead
+{
   background-color: rgb(245,246,250);
 }
 tr:hover{
-  box-shadow: 1px 1px 4px black inset;
+  background : #66C6A3;
+  border: 1px solid #389774;
+  color: #FFFFFF;
 }
 caption{
   text-align: left;
   margin-bottom: 40px;
   font-size: 25px;
   font-weight: bold;
+}
+
+/* @media (max-width: 1300px) {
+
+  .App{
+    flex-direction: column;
+    justify-content: center;
+  }
+  ul{
+    flex-direction: column;
+    margin-left:0%;
+    margin-right:0%;
+    padding: 0px;
+  }
+} */
+
+.white{
+  position : absolute;
+  right : 14px;
+  top: 14px;
+}
+.black{
+  position : absolute;
+  right : 14px;
+  top: 14px;
+}
+.whitebtn{
+  position : absolute;
+  right : 9px;
+  top: 10px;
+}
+.blackbtn{
+  position : absolute;
+  right : 9px;
+  top: 10px;
 }
