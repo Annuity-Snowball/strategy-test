@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import axios from 'axios'
 import styled from 'styled-components';
 import {Route,Routes,NavLink } from "react-router-dom";
 import { ReactComponent as Profile } from "../img/Profile.svg";
@@ -183,13 +184,25 @@ export default function Singup() {
     const handlePassword = (e)=>{
         setPassword(e.target.value);
     }
-    const handleSubmit = (e)=>{
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        // consts-={
-        //     name : name,
-        //     nickname : nickname,
-        //     password : password,
-        //     email : email,}
+        const Reigster = new FormData();
+        Reigster.append("password",name);
+        Reigster.append("username", nickname);
+        Reigster.append("password",email);
+        Reigster.append("password",password);
+
+        try{
+            const response = await axios(
+                {
+                    method : "post",
+                    url : "/",
+                    data : Reigster,
+                    headers : {"Content-Type" : "multipart/form-data"},
+                });
+        }catch(error){
+            console.log(error);
+        }
         
     }
   return (
