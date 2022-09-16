@@ -9,9 +9,6 @@ import { ReactComponent as Profile } from "../img/Profile.svg";
   height="current"
   viewBox="0 0 24 24"
 ></svg>
-const Frame =styled.div`
-
-`;
 const Login1 =styled.div`
 font-family: 'Noto Sans';
 font-style: normal;
@@ -183,7 +180,7 @@ export default function Singup() {
     };
     const handlePassword = (e)=>{
         setPassword(e.target.value);
-    }
+    };
     const handleSubmit = async(e) => {
         e.preventDefault();
         const Reigster = new FormData();
@@ -225,14 +222,14 @@ export default function Singup() {
                     <Frame2>
                     <Text1>이름</Text1><Req color="#F53A5C;">(필수)</Req>
                     </Frame2>
-                    <Input name="name"placeholder='본명을 입력하세요' onChange={handleName}></Input>
+                    <Input name="name" placeholder='본명을 입력하세요' onChange={handleName}></Input>
                     <Text2>한글, 영문 대소문자만 가능합니다</Text2>
                 </NameFrame>
                 <NicknameFrame>
                     <Frame2>
-                    <Text1>이름</Text1><Req color="#F53A5C;">(필수)</Req>
+                    <Text1>닉네임</Text1><Req color="#F53A5C;">(필수)</Req>
                     </Frame2>
-                    <Input nickname="nickname"placeholder='원하시는 닉네임을 입력하세요' onChange={handleNickname} ></Input>
+                    <Input nickname="nickname" placeholder='원하시는 닉네임을 입력하세요' onChange={handleNickname}></Input>
                     <Text2>4~13자리의 한글,영문 대소문자, 숫자 사용가능</Text2>
                 </NicknameFrame>
             </Frame1>
@@ -248,7 +245,7 @@ export default function Singup() {
                 <Text1>비밀번호 입력</Text1><Req color="#F53A5C;">(필수)</Req>
                 </Frame2>
                 <Input placeholder='비밀번호 입력'></Input>
-                <Input password="password"placeholder='비밀번호 확인' onChange={{handlePassword}}></Input>
+                <Input password="password"placeholder='비밀번호 확인' onChange={handlePassword}></Input>
                 <Text2>비밀번호 확인완료</Text2>
             </EmailFrame>
             <Button>가입완료</Button>
