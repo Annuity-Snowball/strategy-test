@@ -2,23 +2,29 @@ import React from 'react'
 
 export default function list() {
     const style ={
-        width : '350px',
-        height : '350px',
+        width : '200px',
+        height : '200px',
         borderRadius : '20%',
-        boxShadow : '0px 0px 2px 2px gray',
-        backgroundColor : 'grey',
+        backgroundColor : 'rgb(240,240,240)',
         padding : '3%',
         float : 'left',
-        marginLeft : '3%',
-        marginTop : '1%'
+        marginRight : '3%',
+        marginBottom : '3%',
+        fontWeight : 'bold',
       }
   return (
         <div style={style}>
-        <h1>눈굴러가요의<br/>추천 포트롤리오<br/>첫번째!</h1>
+        <h3>눈굴러가요의<br/>추천 포트폴리오<br/>첫번째!</h3>
         <br/>
         <br/>
-        <span>수령기간         20년</span>
-        <span>수령금액         20만원</span>
+        <div style={{height : '30px',display :'flex',alignItems : 'center'}}>
+        <h1 style={{fontSize : '15px',width : '220px'}}>수령 기간</h1>
+        <div style={{width : '100px',height : '17px',textDecoration : 'underline',textAlign :'right'}}>20년</div>
+        </div>
+        <div style={{height : '30px',display :'flex',alignItems : 'center'}}>
+        <h1 style={{fontSize : '15px',width : '220px'}}>수령 금액</h1>
+        <div style={{width : '100px',height : '17px',textDecoration : 'underline',textAlign :'right'}}>20만원</div>
+        </div>
         </div>
   )
 }

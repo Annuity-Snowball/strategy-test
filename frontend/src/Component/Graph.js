@@ -1,5 +1,5 @@
 import React from 'react'
-import '../App.css';
+import '../css/App.css';
 import ReactApexChart from "react-apexcharts" 
 function Graph() {
     const series = [{
