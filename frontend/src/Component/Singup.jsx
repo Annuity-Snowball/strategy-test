@@ -186,7 +186,7 @@ export default function Singup() {
         const Reigster = new FormData();
         Reigster.append("password",name);
         Reigster.append("username", nickname);
-        Reigster.append("password",email);
+        Reigster.append("email",email);
         Reigster.append("password",password);
 
         try{
