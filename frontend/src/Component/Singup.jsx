@@ -194,7 +194,7 @@ export default function Singup() {
         try{
             const response = await axios(
                 {
-                    method : "post",
+                    method : "POST",
                     url : "http://localhost:8000/service_api/user/",
                     data : Reigster,
                     headers : {"Content-Type" : "multipart/form-data"},
@@ -229,7 +229,7 @@ export default function Singup() {
                     <Frame2>
                     <Text1>닉네임</Text1><Req color="#F53A5C;">(필수)</Req>
                     </Frame2>
-                    <Input nickname="nickname" placeholder='원하시는 닉네임을 입력하세요' onChange={handleNickname}></Input>
+                    <Input name="nickname" placeholder='원하시는 닉네임을 입력하세요' onChange={handleNickname}></Input>
                     <Text2>4~13자리의 한글,영문 대소문자, 숫자 사용가능</Text2>
                 </NicknameFrame>
             </Frame1>
@@ -237,7 +237,7 @@ export default function Singup() {
                 <Frame2>
                 <Text1>이메일</Text1><Req color="#F53A5C;">(필수)</Req>
                 </Frame2>
-                <Input email="email" placeholder='이메일을 입력하세요' onChange={handleEmail}></Input>
+                <Input name="email" placeholder='이메일을 입력하세요' onChange={handleEmail}></Input>
                 <Text2>한글, 영문 대소문자만 가능합니다</Text2>
             </EmailFrame>
             <EmailFrame>
@@ -245,7 +245,7 @@ export default function Singup() {
                 <Text1>비밀번호 입력</Text1><Req color="#F53A5C;">(필수)</Req>
                 </Frame2>
                 <Input placeholder='비밀번호 입력'></Input>
-                <Input password="password"placeholder='비밀번호 확인' onChange={handlePassword}></Input>
+                <Input name="password"placeholder='비밀번호 확인' onChange={handlePassword}></Input>
                 <Text2>비밀번호 확인완료</Text2>
             </EmailFrame>
             <Button>가입완료</Button>
