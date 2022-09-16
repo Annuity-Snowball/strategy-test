@@ -184,8 +184,8 @@ export default function Singup() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         const Reigster = new FormData();
-        Reigster.append("password",name);
-        Reigster.append("username", nickname);
+        Reigster.append("name",name);
+        Reigster.append("nickname", nickname);
         Reigster.append("email",email);
         Reigster.append("password",password);
 
