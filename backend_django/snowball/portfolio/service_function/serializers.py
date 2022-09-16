@@ -11,19 +11,9 @@ class UserSerializer(serializers.ModelSerializer):
             name = validated_data['name'],
             password = validated_data['password']
         )
+        print(user)
+        
         return user
     class Meta:
         model = User
         fields = ['nickname', 'email', 'name', 'password']
-        
-# class CustomRegisterSerializer(RegisterSerializer):
-#     nickname = serializers.CharField(max_length=100)
-    
-#     class Meta:
-#         model = User
-#         fields = ['nickname', 'email', 'name', 'password']
-    
-#     def get_cleaned_data(self):
-#         data = super().get_cleaned_data()
-#         data['nickname'] = self.validated_data.get('nickname', '')
-#         return data

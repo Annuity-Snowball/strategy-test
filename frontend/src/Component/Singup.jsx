@@ -192,11 +192,13 @@ export default function Singup() {
         Reigster.append("password",email);
         Reigster.append("password",password);
 
+        console.log(Reigster)
+
         try{
-            const response = await axios(
+            const request = await axios(
                 {
                     method : "post",
-                    url : "/",
+                    url : "http://localhost:8000/service_api/user/",
                     data : Reigster,
                     headers : {"Content-Type" : "multipart/form-data"},
                 });
