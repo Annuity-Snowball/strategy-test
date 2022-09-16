@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from portfolio.logic_functions.urls import portfolioRouter as portfolio_router
+from portfolio.service_function.urls import ServiceRouter as service_router
+from rest_framework import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/', include('api.urls')),
-    re_path('insert/', TemplateView.as_view(template_name='index.html')),
+    path('port_api/', include(portfolio_router.urls)),
+    path('service_api/', include(service_router.urls)),
+    path('api-auth/', include('rest_framework.urls')),
+    
+    re_path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    re_path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
 ]
