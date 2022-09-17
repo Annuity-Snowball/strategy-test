@@ -227,6 +227,12 @@ table {
   width: 100%;
   border-collapse:collapse;
   border: 1px solid #E7E7E7;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: -1px;
 }
 th{
   text-align: left;
@@ -237,6 +243,9 @@ td{
   text-align: left;
   padding: 8px;
   font-size: 18px;
+}
+tr{
+  border: 1px solid #E7E7E7;
 }
 thead
 {

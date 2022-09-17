@@ -10,6 +10,7 @@ font-size: 24px;
 line-height: 28px;
 letter-spacing: -0.5px;
 color: #292929;
+margin-bottom : 73px;
 `;
 const Text = styled.div`
 font-family: 'Noto Sans';
@@ -50,40 +51,59 @@ const Title = styled.div`
       color: #389774;
   }
 `;
+const Table = styled.table`
+  background: #FFFFFF;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #E7E7E7;
+  border-collapse : collapse;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 33px;
+  letter-spacing: -1px;
+`;
+const Th = styled.th`
+text-align: left;
+padding: 8px;
+font-size: 12px;
+`;
+const Td = styled.td`
+text-align: left;
+padding: 8px;
+font-weight: 300;
+font-size: 15px;
+;`
 export default function PrintPF(props) {
     const [contents,setContent]=useState(data);
     const [total,setTotal]=useState(3800);
-    useEffect( () =>{
-        console.dir(props.data.data.no_tax.portfolio_result);
-    })
   return (
     <>
     <Title><Text>세제혜택o <span>수령방법</span></Text></Title>
     <Frame>
-        <table border={"1"}>
+        <Table border={"1"}>
             <thead>
-                <th>비교군</th>
-                <th>세제혜택x</th>
-                <th>세제혜택o</th>
+                <Th></Th>
+                { Object.keys(props.data.data.yes_tax.portfolio_receipt[0]).map( (x)=>(
+                  <Th>{x}</Th>
+                ))}
             </thead>
             <tbody>
                 <tr>
-                <td >승률</td>
-                <td >{props.data.data.no_tax.portfolio_result[`승률`]}%</td>
-                <td >{props.data.data.yes_tax.portfolio_result[`승률`]}%</td>
+                <Td>A방안</Td>
+                { Object.values(props.data.data.yes_tax.portfolio_receipt[0]).map( (x)=>(
+                  <Td>{x} 원</Td>
+                ))}
                 </tr>
                 <tr>
-                <td >총 수익률</td>
-                <td >{props.data.data.no_tax.portfolio_result[`총 수익률`]}%</td>
-                <td >{props.data.data.yes_tax.portfolio_result[`총 수익률`]}%</td>
-                </tr>
-                <tr>
-                <td >포트폴리오 가치</td>
-                <td >{props.data.data.no_tax.portfolio_result[`포트폴리오 가치`]}원</td>
-                <td >{props.data.data.yes_tax.portfolio_result[`포트폴리오 가치`]}원</td>
+                <Td >B방안</Td>
+                { Object.values(props.data.data.yes_tax.portfolio_receipt[1]).map( (x)=>(
+                  <Td>{x} 원</Td>
+                ))}
                 </tr>
             </tbody>
-        </table>
+        </Table>
     </Frame>
     </>
   )
