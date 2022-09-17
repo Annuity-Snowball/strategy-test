@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import '../css/App.css';
 import styled from 'styled-components';
 import ReactApexChart from "react-apexcharts"
@@ -10,28 +10,32 @@ const MainLayout = styled.div`
  flex-direction: column;
  margin-top : 20px;
 `; 
-function Graph() {
+function Graph(props) {
+  const[x,setX]=useState(Object.keys(props.data.data.input_money_portfolio));
+  const[y,setY]=useState("");
+  //props.data.data.input_money_portfolio
     const series = [{
         name: '세제해택o',
-        data: [31, 40, 28, 51, 42, 109, 100]
+        data: Object.values(props.data.data.yes_tax.real_portfolio_account)
       }, {
         name: '세제해택x',
-        data: [11, 32, 45, 32, 34, 52, 41]
+        data: Object.values(props.data.data.no_tax.real_portfolio_account)
       },
       {
         name: '납입금액',
-        data: [10, 20, 30, 40, 50, 60, 70]
+        data: Object.values(props.data.data.input_money_portfolio)
       }];
       const options = {
         chart: {
           height: 350,
-          type: 'area'
+          type: 'line',
+          opacity : 1.0
         },
         dataLabels: {
           enabled: false
         },
         stroke: {
-          curve: 'straight'
+          curve: 'smooth',
         },
         title: {
             text: '결과비교',
@@ -39,13 +43,13 @@ function Graph() {
           },
           grid: {
             row: {
-              colors: ['#f3f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+              colors: ['white', 'transparent'], // takes an array which will be repeated on columns
               opacity: 0.5
             },
           },
         xaxis: {
-        //   type: 'datetime',
-          categories: ["2018", "2019", "2020", "2021", "2022", "2023","2024"]
+          type: 'datetime',
+          categories: Object.keys(props.data.data.input_money_portfolio)
         },
         tooltip: {
           x: {
@@ -56,7 +60,7 @@ function Graph() {
 
     return (
       <MainLayout>
-        <ReactApexChart options={options} series={series} type="area" height={350}/>
+        <ReactApexChart options={options} series={series} type="line" height={350}/>
       </MainLayout>
         
     );

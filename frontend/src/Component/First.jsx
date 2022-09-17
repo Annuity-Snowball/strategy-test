@@ -9,6 +9,7 @@ import { ReactComponent as Ten } from "../img/ten.svg";
 import { ReactComponent as BlackArrow } from "../img/blackarrow.svg"
 import { ReactComponent as WhiteArrow } from "../img/whitearrow.svg"
 import axios from 'axios'
+import WayPF from "./WayPF"
 // import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 
@@ -312,9 +313,10 @@ export default function First() {
         <BlackArrow width="24px"/>
         {click1 ? <Second/> : null}
         </InputFrame>
-        {show ? (<PortfolioPrint data={setTabledata}/>) :null}
-        {show ? (<Graph/> ) :null}
-        {show ? (<Graph2/>) :null}
+        {show ? (<PortfolioPrint data={tabledata}/>) :null}
+        {show ? (<Graph data={tabledata}/> ) :null}
+        {show ? (<Graph2 data={tabledata}/>) :null}
+        {show ? (<WayPF data={tabledata}/>) : null}
         </>
         );
         function Second(props) {
@@ -581,7 +583,7 @@ export default function First() {
         }
         function PER(props) {
             const [click,setClick]=useState(false);
-            const [select,setSelect]=useState("PBR");
+            const [select,setSelect]=useState("PER");
             const [tab,setTab]=useState("");
             const [hide,setHide]=useState("false");
             const [upperset,setUpper]=useState("0");
@@ -594,30 +596,29 @@ export default function First() {
             },[])
               const handleSubmit = (event) =>{
                 event.preventDefault();
-                const num =event.target.num.value;
-                const rate = parseInt(event.target.percent.value);
+                const number =event.target.num.value;
+                const rate = event.target.percent.value;
                 const name = event.target.name.value;
-                const newsum=sum+rate;
-                if(rate === 0 || rate === "")
-                {
-                    alert("다시입력해주세요");
-                    return;
-                }
-                if(newsum<=100)
-                {
+                const upper =upperset;
+                const lower= lowerset;
                     const newStrategy={
-                        id : nextId,
-                        strategyName : name,
-                        strategynum : num,
-                        rate : rate,}
+                        temp_id : nextId,
+                        first_group : props.first,
+                        second_group : props.second,
+                        third_group : props.third,
+                        name : name,
+                        number : number,
+                        rate : rate,
+                        upper : upper,
+                        lower : lower,
+                    
+                    }
+                // setList( (current)=>[newStrategy, ...current]);
+                    console.log(strategy_lists);
                     const newStrategys=[...strategy_lists];
                     newStrategys.push(newStrategy);
                     setList(newStrategys);
-                    setSum(newsum);
-                }
-                else{
-                    alert("100퍼를 맞춰주세요");
-                }
+                    console.log(newStrategys);
             }
           return (
             <>
@@ -632,9 +633,9 @@ export default function First() {
                     <FormFrame onSubmit={handleSubmit}>
                     <Input1 name="name" placeholder="PER 저" disabled={true} value="PER 저"></Input1><Flex><Input style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
                     </FormFrame>
-                    <FormFrame style={{height : "130px"}}>
-                    <Text style={{marginLeft : "0px",marginTop : '0px'}}>PER범위 입력</Text>
-                    <Flex><Input name="upper"style={{width : '46px'}}></Input>이상<Input name="lower"style={{width : '46px'}}></Input>이하</Flex>
+                    <FormFrame onSubmit={handleSubmit} style={{height : "130px"}}>
+                    <Input1 name="name" disabled={true} value="PER범위 입력"style={{marginLeft : "0px",marginTop : '0px'}}></Input1>
+                    <Flex><Input name="upper" style={{width : '46px'}}onChange={(e)=>{setUpper(e.target.value);}}/>이상<Input name="lower" style={{width : '46px'}} onChange={(e)=>{setLower(e.target.value);}}/>이하</Flex>
                     <Flex><Input style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
                     </FormFrame>
                 </Frame2>
@@ -664,7 +665,7 @@ export default function First() {
                 input_way: "0",
                 }
                 onClose?.();
-                setList([]);
+                // setList([]);
                 const Reigster = [
                     {
                         "portfolio_name": portfolio_name,

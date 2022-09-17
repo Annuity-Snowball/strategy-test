@@ -58,10 +58,9 @@ export default function PrintPF(props) {
     })
   return (
     <>
-    <Title><Text>포트폴리오 <span>결과보기</span></Text><Text1>등록된 포트폴리오의 분석 결과를 아래에서 보실수 있습니다.</Text1></Title>
+    <Title><Text>세제혜택o <span>수령방법</span></Text></Title>
     <Frame>
         <table border={"1"}>
-            <caption >총 납입 금액 : { `${props.data.data.no_tax.portfolio_result[`투입한 금액`]}`}원</caption>
             <thead>
                 <th>비교군</th>
                 <th>세제혜택x</th>

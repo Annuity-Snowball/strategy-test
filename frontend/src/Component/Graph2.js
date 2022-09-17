@@ -10,11 +10,11 @@ const MainLayout = styled.div`
  flex-direction: column;
  margin-top : 20px;
 `; 
-function Graph2() {
+function Graph2(props) {
     const series = [
       {
         name: '일별수익률',
-        data: [0.0, -11.41, -17.2, -11.67, -13.61, 109, 100]
+        data: Object.values(props.data.data.yes_tax.portfolio_result[`일별 수익률`])
       }];
       const options = {
         chart: {
@@ -39,7 +39,7 @@ function Graph2() {
           },
         xaxis: {
            type: 'datetime',
-            categories: ["2018", "2019", "2020", "2021", "2022", "2023","2024"]
+            categories: Object.keys(props.data.data.yes_tax.portfolio_result[`일별 수익률`])
         },
         tooltip: {
           x: {
