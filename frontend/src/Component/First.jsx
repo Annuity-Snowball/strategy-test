@@ -381,16 +381,21 @@ export default function First() {
                 <Frame2>
                 <div className='btn name'>
                 전략종류
-                <Span>1개중 하나 선택해주세요</Span>
+                <Span>3개중 하나 선택해주세요</Span>
                 </div>
                     <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="ETF" onClick={ (e) => {setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}});setSelect(e.target.innerText);}}>
-                        ETF{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                        ETF
+                    </div>
+                    <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="리츠" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}});setSelect(e.target.innerText);}}>
+                        리츠
+                    </div>
+                    <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="예금" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}});setSelect(e.target.innerText);}}>
+                        예금
                     </div>
                 </Frame2>
-                <BlackArrow width="24px"/>
-                {click ? (
+                {/* {click ? (
                 <Asset1 name={select} first={props.first} second={select}/>
-                ) : null}
+                ) : null} */}
                 </>
           )
         }
@@ -429,9 +434,90 @@ export default function First() {
                     </div>
                 </Frame2>
                 <BlackArrow width="24px"/>
-                {click ? (
+                { (click && select==="벨류지표")? (
                 <Fourth name={select} first={props.first} second={select}/>
                 ) : null}
+                { (click && select==="펀더멘탈지표")? (
+                <Funder name={select} first={props.first} second={select}/>
+                ) : null}
+                { (click && select==="모멘텀지표")? (
+                <Momantom name={select} first={props.first} second={select}/>
+                ) : null}
+                </>
+          )
+        }
+        function Momantom(props) {
+            const [click,setClick]=useState(false);
+            const [select,setSelect]=useState("");
+            const [tab,setTab]=useState("");
+            useEffect( () =>(
+                setClick( (prev) => {if(tab === ''){
+                    return false }
+                    else{
+                    return true
+                    }})
+            ),[tab])
+            const handlePortfolioinsert = () =>{
+                setClick( (prev) => !prev );
+              }
+          return (
+            <>
+                <Frame2>
+                  <div className='btn name'>
+                    {props.name}
+                    <Span>2개중 하나 선택해주세요</Span>
+                  </div>
+                <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="이동평균선돌파" onClick={ (e) => { setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); setSelect(e.target.innerText);}}>
+                        이동평균선돌파{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
+                    <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="시장대비상승" onClick={ (e) => { setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}});setSelect(e.target.innerText); }}>
+                        시장대비상승{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
+                </Frame2>
+                {/* <BlackArrow width="24px"/>
+                <A first={props.first} second={props.second} third={select}/> */}
+                </>
+          )
+        }
+        function Funder(props) {
+            const [click,setClick]=useState(false);
+            const [select,setSelect]=useState("");
+            const [tab,setTab]=useState("");
+            useEffect( () =>(
+                setClick( (prev) => {if(tab === ''){
+                    return false }
+                    else{
+                    return true
+                    }})
+            ),[tab])
+            const handlePortfolioinsert = () =>{
+                setClick( (prev) => !prev );
+              }
+          return (
+            <>
+                <Frame2>
+                  <div className='btn name'>
+                    {props.name}
+                    <Span>5개중 하나 선택해주세요</Span>
+                  </div>
+                <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="ROE" onClick={ (e) => { setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); setSelect(e.target.innerText);}}>
+                        ROE{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
+                    <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="ROA" onClick={ (e) => { setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}});setSelect(e.target.innerText); }}>
+                        ROA{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
+                    <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="영업이익률" onClick={ (e) => { setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}});setSelect(e.target.innerText); }}>
+                        영업이익률{tab === 'prev2' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
+                    <div className={`btn ${ tab ==='prev3' ? 'active' : ''}`} name="부채비율" onClick={ (e) => { setTab((prev) => { if(prev !== 'prev3'){return 'prev3'}else{return""}});setSelect(e.target.innerText); }}>
+                        부채비율{tab === 'prev3' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
+                    <div className={`btn ${ tab ==='prev4' ? 'active' : ''}`} name="유동비율" onClick={ (e) => { setTab((prev) => { if(prev !== 'prev4'){return 'prev4'}else{return""}});setSelect(e.target.innerText); }}>
+                        유동비율{tab === 'prev4' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
+                </Frame2>
+                {/* <BlackArrow width="24px"/>
+                <A first={props.first} second={props.second} third={select}/> */}
                 </>
           )
         }
@@ -455,6 +541,9 @@ export default function First() {
                 else if(select==="PER"){
                     return click ? (<PER first={props.first} second={props.second} third={select}/>) : null;
                 }
+                else if(select==="PSR"){
+                    return click ? (<PSR first={props.first} second={props.second} third={select}/>) : null;
+                }
             }
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
@@ -464,7 +553,7 @@ export default function First() {
                 <Frame2>
                   <div className='btn name'>
                     {props.name}
-                    <Span>2개중 하나 선택해주세요</Span>
+                    <Span>3개중 하나 선택해주세요</Span>
                   </div>
                 <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER" onClick={ (e) => { setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); setSelect(e.target.innerText);}}>
                         PER{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
@@ -472,54 +561,57 @@ export default function First() {
                     <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR" onClick={ (e) => { setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}});setSelect(e.target.innerText); }}>
                         PBR{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
+                    <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="PBR" onClick={ (e) => { setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}});setSelect(e.target.innerText); }}>
+                        PSR{tab === 'prev2' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+                    </div>
                 </Frame2>
                 <BlackArrow width="24px"/>
                 <A first={props.first} second={props.second} third={select}/>
                 </>
           )
         }
-        function Asset1(props) {
-            const [click,setClick]=useState(false);
-            const [select,setSelect]=useState("");
-            const [tab,setTab]=useState("");
-            useEffect( () =>(
-                setClick( (prev) => {if(tab === ''){
-                    return false }
-                    else{
-                    return true
-                    }})
-            ),[tab])
+        // function Asset1(props) {
+        //     const [click,setClick]=useState(false);
+        //     const [select,setSelect]=useState("");
+        //     const [tab,setTab]=useState("");
+        //     useEffect( () =>(
+        //         setClick( (prev) => {if(tab === ''){
+        //             return false }
+        //             else{
+        //             return true
+        //             }})
+        //     ),[tab])
 
-            const A = (props) =>{
-                if( select==="PBR")
-                {
-                    return click ? (<PBR first={props.first} second={props.second} third={select}/>) : null;
-                }
-                else if(select==="PER"){
-                    return click ? (<PER first={props.first} second={props.second} third={select}/>) : null;
-                }
-            }
-            const handlePortfolioinsert = () =>{
-                setClick( (prev) => !prev );
-              }
-          return (
-            <>
-                <Frame2>
-                  <div className='btn name'>
-                    {props.name}
-                    <Span>2개중 하나 선택해주세요</Span>
-                  </div>
-                    <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER" onClick={ (e) => { setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); }}>
-                        PER{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
-                    </div>
-                    <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}}); }}>
-                        PBR{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
-                    </div>
-                </Frame2>
-                <A first={props.first} second={props.second} third={select}/>
-                </>
-          )
-        }
+        //     const A = (props) =>{
+        //         if( select==="PBR")
+        //         {
+        //             return click ? (<PBR first={props.first} second={props.second} third={select}/>) : null;
+        //         }
+        //         else if(select==="PER"){
+        //             return click ? (<PER first={props.first} second={props.second} third={select}/>) : null;
+        //         }
+        //     }
+        //     const handlePortfolioinsert = () =>{
+        //         setClick( (prev) => !prev );
+        //       }
+        //   return (
+        //     <>
+        //         <Frame2>
+        //           <div className='btn name'>
+        //             {props.name}
+        //             <Span>2개중 하나 선택해주세요</Span>
+        //           </div>
+        //             <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="PER" onClick={ (e) => { setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}}); }}>
+        //                 PER{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+        //             </div>
+        //             <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="PBR" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}}); }}>
+        //                 PBR{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
+        //             </div>
+        //         </Frame2>
+        //         <A first={props.first} second={props.second} third={select}/>
+        //         </>
+        //   )
+        // }
         function PBR(props) {
             const [click,setClick]=useState(false);
             const [select,setSelect]=useState("PBR");
@@ -635,6 +727,67 @@ export default function First() {
                     </FormFrame>
                     <FormFrame onSubmit={handleSubmit} style={{height : "130px"}}>
                     <Input1 name="name" disabled={true} value="PER범위 입력"style={{marginLeft : "0px",marginTop : '0px'}}></Input1>
+                    <Flex><Input name="upper" style={{width : '46px'}}onChange={(e)=>{setUpper(e.target.value);}}/>이상<Input name="lower" style={{width : '46px'}} onChange={(e)=>{setLower(e.target.value);}}/>이하</Flex>
+                    <Flex><Input style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
+                    </FormFrame>
+                </Frame2>
+                </>
+          )
+        }
+        function PSR(props) {
+            const [click,setClick]=useState(false);
+            const [select,setSelect]=useState("PSR");
+            const [tab,setTab]=useState("");
+            const [hide,setHide]=useState("false");
+            const [upperset,setUpper]=useState("0");
+            const [lowerset,setLower]=useState("0");
+            const handlePortfolioinsert = () =>{
+                setClick( (prev) => !prev );
+              }
+            useEffect( () =>{
+                setHide(false);
+            },[])
+              const handleSubmit = (event) =>{
+                event.preventDefault();
+                const number =event.target.num.value;
+                const rate = event.target.percent.value;
+                const name = event.target.name.value;
+                const upper =upperset;
+                const lower= lowerset;
+                    const newStrategy={
+                        temp_id : nextId,
+                        first_group : props.first,
+                        second_group : props.second,
+                        third_group : props.third,
+                        name : name,
+                        number : number,
+                        rate : rate,
+                        upper : upper,
+                        lower : lower,
+                    
+                    }
+                // setList( (current)=>[newStrategy, ...current]);
+                    console.log(strategy_lists);
+                    const newStrategys=[...strategy_lists];
+                    newStrategys.push(newStrategy);
+                    setList(newStrategys);
+                    console.log(newStrategys);
+            }
+          return (
+            <>
+                <Frame2>
+                <div className='btn name'>
+                전략등록하기
+                <Span>3개중 하나 선택해주세요</Span>
+                </div>
+                    <FormFrame onSubmit={handleSubmit}>
+                    <Input1 name="name" placeholder="PSR 고" disabled={true} value="PSR 고"></Input1><Flex><Wrap><Input onMouseEnter={() => {setHide(true)}} onMouseLeave={() => {setHide(false)}} style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><HiddenText display={hide ? "block" : "none"}>전략수량을 입력해주세요</HiddenText></Wrap><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
+                    </FormFrame>
+                    <FormFrame onSubmit={handleSubmit}>
+                    <Input1 name="name" placeholder="PSR 저" disabled={true} value="PSR 저"></Input1><Flex><Input style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
+                    </FormFrame>
+                    <FormFrame onSubmit={handleSubmit} style={{height : "130px"}}>
+                    <Input1 name="name" disabled={true} value="PSR범위 입력"style={{marginLeft : "0px",marginTop : '0px'}}></Input1>
                     <Flex><Input name="upper" style={{width : '46px'}}onChange={(e)=>{setUpper(e.target.value);}}/>이상<Input name="lower" style={{width : '46px'}} onChange={(e)=>{setLower(e.target.value);}}/>이하</Flex>
                     <Flex><Input style={{width : '46px'}} name="num" placeholder='수량'defaultValue=""></Input><Input name="percent"style={{width : '46px'}}placeholder='%'></Input><Button1 style={{width : '72px'}}>등록</Button1></Flex>
                     </FormFrame>
