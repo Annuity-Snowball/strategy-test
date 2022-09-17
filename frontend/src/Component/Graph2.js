@@ -21,11 +21,13 @@ function Graph2(props) {
           height: 350,
           type: 'line'
         },
+        colors:['#66c6a3',],
         dataLabels: {
           enabled: false
         },
         stroke: {
-          curve: 'smooth'
+          curve: 'smooth',
+          width: 3,
         },
         title: {
             text: '일별수익률',

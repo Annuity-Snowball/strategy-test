@@ -27,15 +27,19 @@ function Graph(props) {
       }];
       const options = {
         chart: {
-          height: 350,
-          type: 'line',
-          opacity : 1.0
+          type:'line',
+          height:350,
         },
-        dataLabels: {
-          enabled: false
+        colors:['#66c6a3', '#ff7759', '#787878'],
+        fill:{
+          opacity:[0.9, 0.9, 0.7],  
         },
+        
         stroke: {
           curve: 'smooth',
+          width: 3,
+          lineCap: 'round',
+          dashArray: [0, 0, 4]
         },
         title: {
             text: '결과비교',
