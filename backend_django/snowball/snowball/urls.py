@@ -25,6 +25,7 @@ urlpatterns = [
     path('port_api/', include(portfolio_router.urls)),
     path('service_api/', include(service_router.urls)),
     path('api-auth/', include('rest_framework.urls')),
+    path('calc/', include('portfolio.logic_functions.urls')),
     
     re_path('dj-rest-auth/', include('dj_rest_auth.urls')),
     re_path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),

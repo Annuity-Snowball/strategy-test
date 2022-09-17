@@ -18,4 +18,5 @@ portfolioRouter.register(r'portfolio_result', PortfolioResultApi)
 
 
 urlpatterns =[
+    path('calcApi', CalcApi.as_view()),
 ]
