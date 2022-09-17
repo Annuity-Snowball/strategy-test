@@ -53,9 +53,6 @@ const Title = styled.div`
 export default function PrintPF(props) {
     const [contents,setContent]=useState(data);
     const [total,setTotal]=useState(3800);
-    useEffect( () =>{
-        console.dir(props.data.data.no_tax.portfolio_result);
-    })
   return (
     <>
     <Title><Text>포트폴리오 <span>결과보기</span></Text><Text1>등록된 포트폴리오의 분석 결과를 아래에서 보실수 있습니다.</Text1></Title>
@@ -82,6 +79,11 @@ export default function PrintPF(props) {
                 <td >포트폴리오 가치</td>
                 <td >{props.data.data.no_tax.portfolio_result[`포트폴리오 가치`]}원</td>
                 <td >{props.data.data.yes_tax.portfolio_result[`포트폴리오 가치`]}원</td>
+                </tr>
+                <tr>
+                <td >월 수익률 평균</td>
+                <td >{props.data.data.no_tax.portfolio_result[`월 수익률 추이`][`월 수익률 평균`]}%</td>
+                <td >{props.data.data.yes_tax.portfolio_result[`월 수익률 추이`][`월 수익률 평균`]}%</td>
                 </tr>
             </tbody>
         </table>
