@@ -1,6 +1,15 @@
 import React from 'react'
 import '../css/App.css';
-import ReactApexChart from "react-apexcharts" 
+import styled from 'styled-components';
+import ReactApexChart from "react-apexcharts"
+const MainLayout = styled.div`
+ max-width : 1200px;
+ width : 1200px;
+ margin : 0 auto;
+ display : flex;
+ flex-direction: column;
+ margin-top : 20px;
+`; 
 function Graph() {
     const series = [{
         name: '세제해택o',
@@ -46,9 +55,10 @@ function Graph() {
       }
 
     return (
-        <div className="p_insert_body">
-        <ReactApexChart options={options} series={series} type="area" height={350} />
-        </div>
+      <MainLayout>
+        <ReactApexChart options={options} series={series} type="area" height={350}/>
+      </MainLayout>
+        
     );
 };
 

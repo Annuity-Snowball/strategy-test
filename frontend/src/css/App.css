@@ -182,6 +182,8 @@ a li:hover{
   box-shadow: 0px 0px 5px #333 inset;
 }
 .btn.name{
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: 'Noto Sans';
@@ -191,6 +193,7 @@ a li:hover{
   line-height: 100%;
   color: #000000;
   border: 1px solid #E7E7E7;
+  gap : 8px;
 }
 .strategytitle{
   width : auto;
@@ -246,9 +249,9 @@ tr:hover{
 }
 caption{
   text-align: left;
-  margin-bottom: 40px;
   font-size: 25px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 /* @media (max-width: 1300px) {

@@ -6,7 +6,6 @@ import Insert from './Component/Insert';
 import NotFound from './Component/NotFound';
 import Main from './Component/Main';
 import Shop from './Component/Portfolioshop';
-import Notice from './Component/Notice';
 import Singup from './Component/Singup';
 import Footer from './Component/Footer';
 import LoginPage from './Component/LoginPage';
@@ -23,7 +22,6 @@ function App() {
       <Route path="/insert" element={<Insert />}></Route>
       <Route path="/myportfolio" element={<Myportfolio/>}></Route>
       <Route path="/shopping" element={<Shop />}></Route>
-      <Route path="/notice" element={<Notice />}></Route>
       <Route path="/signup" element={<Singup />}></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>

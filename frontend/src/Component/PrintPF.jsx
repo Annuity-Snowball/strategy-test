@@ -25,8 +25,8 @@ export default function PrintPF() {
             </thead>
             <tbody>
                 {
-                contents.map( (content) => (
-                <tr>
+                contents.map( (content,index) => (
+                <tr key={index}>
                 <td >{content.type}</td>
                 <td >{content.notbenefit}</td>
                 <td >{content.taxbenefit}</td>

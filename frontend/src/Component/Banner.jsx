@@ -58,7 +58,6 @@ export default function Banner() {
             <NavLink to="/insert"><li >스노우 등록</li></NavLink>
             <NavLink to="/myportfolio"><li>내 스노우</li></NavLink>
             <NavLink to="/shopping"><li>스노우샾</li></NavLink>
-            <NavLink to="/notice"><li>NOTICE</li></NavLink>
             </ul>
             </nav>
 

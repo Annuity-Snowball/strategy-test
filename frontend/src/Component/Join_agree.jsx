@@ -152,7 +152,6 @@ transform:translate(-50%,0);
 `;
 export default function Join_agree() {
   const handleButton = (e) =>{
-    console.log("!");
     window.location.href="/signup";
 
 }

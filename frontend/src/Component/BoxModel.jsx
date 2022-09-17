@@ -1,62 +1,88 @@
 import React,{useState,useEffect} from 'react'
-import circle from '../img/circle.png'
+import styled from 'styled-components';
+import { ReactComponent as Ten } from "../img/ten.svg";
+import { ReactComponent as Green } from "../img/green.svg"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="current"
+  height="current"
+  viewBox="0 0 24 24"
+>
+  <path fill="current" fill-rule="evenodd" d="...." />
+</svg>
+
+const BoxModeL = styled.div`
+display : flex;
+flex-direction: column;
+width : calc( (100% - 60px) / 3);
+height: 273px;
+background: #FFFFFF;
+border: 1px solid #CECECE;
+border-radius: 7px;
+box-sizing : border-box;
+padding : 35px 24px 35px 24px;
+gap : 8px;
+`;
+
+const Text1 = styled.div`
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 19px;
+letter-spacing: -1px;
+color: #7C7C7C;
+`;
+const TextP = styled.div`
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 300;
+font-size: 24px;
+line-height: 33px;
+letter-spacing: -1px;
+margin-bottom : 37px;
+color: #000000;
+span{
+  font-weight: 600;
+}
+`;
+const Frame2 = styled.div`
+display : flex;
+flex-direction: row;
+justify-content : space-between;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 19px;
+letter-spacing: -1px;
+color: #7C7C7C;
+`;
+const Round = styled.div`
+display : flex;
+flex-direction : row;
+gap : 4px;
+`;
+const Text2 = styled.div`
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 25px;
+letter-spacing: -1px;
+color: #282828;
+`;
 export default function BoxModel(props) {
-    const [strategy_nums,setStrategy_num]=useState([0,1,2,3]);
     const [period,setPeriod]=useState(props.period);
     const [money,setMoney]=useState(props.money);
-    const style={
-        width : '19%',
-        height : '600px',
-        borderRadius : '30px',
-        background : props.color,
-        float : 'left',
-        marginRight : '3%',
-        marginBottom : "3%",
-        padding : '15px',
-      };
-      useEffect ( () =>{
-        setPeriod(props.period);
-        setMoney(props.money);
-      },[])
+
   return (
-    <>
-      <div style={style}>
-        <br/>
-        <br/>
-        <br/>
-        {/* 반복문안에 반복문을 넣어야할듯 */}
-        <h1 style={{fontSize : '25px'}}>눈굴러가요의<br/>추천 포트폴리오<br/>{props.sequence}번째!</h1>
-        <br/><br/>
-        <h1 style={{fontSize : '20px'}}>전략 목록</h1>
-        <div style={{ height : '30px',position : 'relative',marginTop : '5px',marginBottom : '5px'}}>
-        {strategy_nums.map( (strategy_num) =>(
-          <>
-        <img className="strategycircle"style={{width : '30px',
-        position : 'absolute',
-        top : 0,
-        left : (strategy_num*15)
-        }}
-        src={circle} alt="원"/>
-        </>
-        ))}
-        </div>
-        <div style={{height : '30px',display :'flex',alignItems : 'center'}}>
-        <h1 style={{fontSize : '20px',width : '250px'}}>세제 혜택</h1>
-        <input style={{width : '17px',height : '17px'}}type="checkbox"/>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <div style={{height : '30px',display :'flex',alignItems : 'center'}}>
-        <h1 style={{fontSize : '20px',width : '220px'}}>수령 기간</h1>
-        <div style={{width : '100px',height : '17px',textDecoration : 'underline',textAlign :'right'}}>{period}년</div>
-        </div>
-        <div style={{height : '30px',display :'flex',alignItems : 'center'}}>
-        <h1 style={{fontSize : '20px',width : '220px'}}>수령 금액</h1>
-        <div style={{width : '100px',height : '17px',textDecoration : 'underline',textAlign :'right'}}>{money}만원</div>
-        </div>
-      </div>
-    </>
+    <BoxModeL>
+            <Text1>닉네임 : </Text1>
+            <TextP>첫번째 포트폴리오</TextP>
+            <Frame2>전략개수 <Round><Green/><Green/><Green/><Green/><Green/></Round></Frame2>
+            <Frame2>수령금액 /기간 <Text2>200,000 원 / 20 년</Text2></Frame2>
+            <Frame2>수익률 <Text2>200 %</Text2></Frame2>
+    </BoxModeL>
   )
 }

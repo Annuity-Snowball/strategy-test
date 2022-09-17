@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import styled from 'styled-components';
 import {Route,Routes,NavLink } from "react-router-dom";
@@ -128,7 +128,7 @@ font-weight: 400;
 font-size: 10px;
 line-height: 16px;
 letter-spacing: -0.408px;
-color: #66C6A3;
+color: ${props => props.color || "#66C6A3"};
 `;
 const Input = styled.input`
 width : 100%;
@@ -148,7 +148,6 @@ box-sizing: border-box;
 const Button=styled.button`
 width: 240px;
 height: 42px;
-background: #66C6A3;
 border-radius: 7px;
 font-family: 'Noto Sans';
 font-style: normal;
@@ -158,7 +157,8 @@ line-height: 19px;
 letter-spacing: -1px;
 border : none;
 margin-top: 72px;
-color: #FFFFFF;
+background: ${props => props.background || "#66C6A3"};
+color: ${props => props.color || "#FFFFFF"};
 margin-left :auto;
 margin-bottom : 87px;
 transform:translate(-50%,0);
@@ -169,6 +169,10 @@ export default function Singup() {
     const [nickname,setNickname]=useState("");
     const [password,setPassword]=useState("");
     const [email,setEmail]=useState("");
+    const [checkpassword,setCheckpassword]=useState("true");
+    const [checkemail,setCheckemail]=useState("true");
+    const [checknickname,setChecknickname]=useState("true");
+
     const handleName = (e) =>{
         setName(e.target.value);
     };
@@ -181,6 +185,15 @@ export default function Singup() {
     const handlePassword = (e)=>{
         setPassword(e.target.value);
     };
+    const handlePasswordCheck = (e) =>{
+        if(e.target.value === password)
+        {
+            setCheckpassword(true);
+        }
+        else{
+            setCheckpassword(false);
+        }
+    }
     const handleSubmit = async(e) => {
         e.preventDefault();
         const Reigster = new FormData();
@@ -188,17 +201,36 @@ export default function Singup() {
         Reigster.append("nickname", nickname);
         Reigster.append("email",email);
         Reigster.append("password",password);
-
+        console.log(Reigster);
         try{
-            const response = await axios(
+            await axios(
                 {
-                    method : "post",
-                    url : "/",
+                    method : "POST",
+                    url : "http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/service_api/user/",
                     data : Reigster,
-                    headers : {"Content-Type" : "multipart/form-data"},
+                    headers : {"Content-Type" : "multipart/form-data",},
                 });
+                alert("회원가입성공!");
+                window.location.href="/";
         }catch(error){
             console.log(error);
+            if(error.response.data.email[0] === "user with this email already exists.")
+            {
+                alert("이메일이 겹쳐요");
+                setCheckemail(false);
+            }
+            else{
+                setCheckemail(true);
+            }
+            if(error.response.data.nickname[0] === "user with this nickname already exists.")
+            {
+                alert("닉네임이 겹쳐요");
+                setChecknickname(false);
+            }
+            else{
+                setChecknickname(true);
+            }
+            alert("에러");
         }
         
     }
@@ -218,7 +250,7 @@ export default function Singup() {
             <Frame1>
                 <NameFrame>
                     <Frame2>
-                    <Text1>이름</Text1><Req color="#F53A5C;">(필수)</Req>
+                    <Text1>이름</Text1><Req color="#F53A5C">(필수)</Req>
                     </Frame2>
                     <Input name="name" placeholder='본명을 입력하세요' onChange={handleName}></Input>
                     <Text2>한글, 영문 대소문자만 가능합니다</Text2>
@@ -228,7 +260,7 @@ export default function Singup() {
                     <Text1>닉네임</Text1><Req color="#F53A5C;">(필수)</Req>
                     </Frame2>
                     <Input nickname="nickname" placeholder='원하시는 닉네임을 입력하세요' onChange={handleNickname}></Input>
-                    <Text2>4~13자리의 한글,영문 대소문자, 숫자 사용가능</Text2>
+                    {checknickname ? (<Text2>4~13자리의 한글,영문 대소문자, 숫자 사용가능</Text2>) : (<Text2 color="#F53A5C">다시입력해주세요</Text2>)}
                 </NicknameFrame>
             </Frame1>
             <EmailFrame>
@@ -236,17 +268,17 @@ export default function Singup() {
                 <Text1>이메일</Text1><Req color="#F53A5C;">(필수)</Req>
                 </Frame2>
                 <Input email="email" placeholder='이메일을 입력하세요' onChange={handleEmail}></Input>
-                <Text2>한글, 영문 대소문자만 가능합니다</Text2>
+                {checkemail ? (<Text2>한글, 영문 대소문자만 가능합니다</Text2>) : (<Text2 color="#F53A5C">다시입력해주세요</Text2>)}
             </EmailFrame>
             <EmailFrame>
                 <Frame2>
                 <Text1>비밀번호 입력</Text1><Req color="#F53A5C;">(필수)</Req>
                 </Frame2>
-                <Input placeholder='비밀번호 입력'></Input>
-                <Input password="password"placeholder='비밀번호 확인' onChange={handlePassword}></Input>
-                <Text2>비밀번호 확인완료</Text2>
+                <Input password="password" placeholder='비밀번호 입력' onChange={handlePassword}></Input>
+                <Input placeholder='비밀번호 확인' onChange={handlePasswordCheck}></Input>
+                {checkpassword ? (<Text2>비밀번호 확인완료</Text2>) : (<Text2 color="#F53A5C;">비밀번호를 확인해주세요</Text2>)}
             </EmailFrame>
-            <Button>가입완료</Button>
+            <Button >가입완료</Button>
     </Title>
     </>
   );

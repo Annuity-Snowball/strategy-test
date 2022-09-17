@@ -1,5 +1,17 @@
+import { Circle } from '@chakra-ui/react';
 import React,{useState} from 'react'
 import styled from 'styled-components';
+import { ReactComponent as Ten } from "../img/ten.svg";
+import { ReactComponent as Green } from "../img/green.svg"
+import BoxModel from './BoxModel';
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="current"
+  height="current"
+  viewBox="0 0 24 24"
+>
+  <path fill="current" fill-rule="evenodd" d="...." />
+</svg>
 const MainLayout = styled.div`
  max-width : 1200px;
  margin : 0 auto;
@@ -14,7 +26,6 @@ font-size: 24px;
 line-height: 33px;
 letter-spacing: -1px;
 color: #000000;
-margin-right : 20px;
 span{
   font-weight: 600;
 }
@@ -25,6 +36,7 @@ const Title = styled.div`
   align-items: flex-end;
   margin-top:73px;
   margin-bottom : 37px;
+  gap : 10px;
 `;
 const Text1 = styled.div`
 font-family: 'Noto Sans';
@@ -39,35 +51,43 @@ const Frame = styled.div`
 display : flex;
 gap : 30px;
 flex-wrap: wrap;
+margin-bottom : 73px;
 `;
-
-const BoxModel = styled.div`
+const SgyButton = styled.div`
 display : flex;
-flex-direction: column;
-width : calc( (100% - 60px) / 3);
-height: 273px;
-background: #FFFFFF;
-border: 1px solid #CECECE;
+width: 150px;
+height: 38px;
+gap : 31px;
+justify-content: center;
+height: 37px;
+font-family: 'Noto Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 19px;
+letter-spacing: -1px;
+color: #FFFFFF;
+background: #FF7759;
 border-radius: 7px;
-box-sizing : border-box;
-padding : 35px 24px 35px 24px;
-gap : 8px;
-`
+margin-left : auto;
+align-items : center;
+`;
 export default function Myportfolio() {
     const [mylist,mylistSet]=useState(0);
+
+    const handlebutton = (e) =>{
+      window.location.href="/insert";
+    }
   return (
     <MainLayout>
-    <Title><Text>내 <span>포트폴리오</span></Text><Text1>등록된 포트폴리오가 {mylist}개 있습니다.</Text1></Title>
+    <Title><Text>내 <span>포트폴리오</span></Text><Text1>등록된 포트폴리오가 {mylist}개 있습니다.</Text1> <SgyButton onClick={handlebutton}>새 포트폴리오<Ten/></SgyButton></Title>
     <Frame>
-        <BoxModel>
-            <Text1>닉네임</Text1>
-            <Text>첫번째 포트폴리오</Text>
-        </BoxModel>
-        <BoxModel>123</BoxModel>
-        <BoxModel>123</BoxModel>
-        <BoxModel>123</BoxModel>
-        <BoxModel>123</BoxModel>
-        <BoxModel>123</BoxModel>
+      <BoxModel/>
+      <BoxModel/>
+      <BoxModel/>
+      <BoxModel/>
+      <BoxModel/>
+      <BoxModel/>
     </Frame>
     </MainLayout>
   )
