@@ -1,5 +1,6 @@
-from portfolio.models import User, Portfolio_info, Product_info, Portfolio_result
-from portfolio.logic_functions.serializers import PortfolioInfoSerializer, UserSerializer, ProductInfoSerializer, PortfolioResultSerializer, calc_serializer
+from portfolio.logic_functions.serializers import PortfolioTempSerializer
+from portfolio.models import User, Portfolio_info, Product_info, Portfolio_result_temp
+from portfolio.logic_functions.serializers import PortfolioInfoSerializer, UserSerializer, ProductInfoSerializer, PortfolioTempResultSerializer
 from rest_framework import viewsets     
 from rest_framework.renderers import JSONRenderer 
 from rest_framework import permissions
@@ -140,16 +141,37 @@ class PortfolioInfoApi(viewsets.ModelViewSet):
         return Response(temp_return)
         # return super().list(self, request, *args, **kwargs)
    
-@method_decorator(csrf_exempt,name='dispatch')     
-class PortfolioResultApi(viewsets.ModelViewSet):
-    queryset = Portfolio_result.objects.all()
-    serializer_class = PortfolioResultSerializer
+# @method_decorator(csrf_exempt,name='dispatch')     
+# class PortfolioResultApi(viewsets.ModelViewSet):
+#     queryset = Portfolio_result_temp.objects.all()
+#     serializer_class = PortfolioResultTempSerializer
+#     permission_class = [permissions.IsAuthenticated]
+    
+#     # @login_required
+#     def create(self, request):
+#         serializer = PortfolioResultTempSerializer(data=request.data)
+#         if serializer.is_valid():
+#             rtn = serializer.create(request, serializer.data)
+#             return Response(PortfolioResultTempSerializer(rtn).data, status=status.HTTP_201_CREATED)
+#         pass
+
+class PortfolioTempResultApi(viewsets.ModelViewSet):
+    queryset = Portfolio_info.objects.all()
+    serializer_class = PortfolioTempResultSerializer
     permission_class = [permissions.IsAuthenticated]
     
-    # @login_required
-    def create(self, request):
-        serializer = PortfolioResultSerializer(data=request.data)
-        if serializer.is_valid():
-            rtn = serializer.create(request, serializer.data)
-            return Response(PortfolioResultSerializer(rtn).data, status=status.HTTP_201_CREATED)
-        pass
+class PortfolioTempApi(viewsets.ModelViewSet):
+    queryset = Portfolio_info.objects.all()
+    serializer_class = PortfolioTempSerializer
+    permission_class = [permissions.IsAuthenticated]
+    
+    @action(methods=['post'], detail=False, url_path='fuck/test')
+    def createPortAndProd(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = PortfolioTempSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        # print(serializer.validated_data['portfolio_name'])
+        fuck = serializer.validated_data['portfolio_name']
+        temp = queryset.filter(portfolio_name=fuck).all()
+        print(temp)
+        return Response(serializer.data)

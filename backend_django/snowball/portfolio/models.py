@@ -64,7 +64,7 @@ class User(AbstractBaseUser):
     
 class Portfolio_info(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=False)
-    portfolio_name = models.CharField(max_length=50)
+    portfolio_name = models.CharField(max_length=50, unique=True)
     strategy_number = models.CharField(max_length=100)
     start_date = models.CharField(max_length=100)
     end_date = models.CharField(max_length=100)
@@ -86,22 +86,22 @@ class Product_info(models.Model):
     
   
 # 결과금액, 누적수익율, 연평균수익율, MDD, 승률, 연최고수익률, 연최저수익률, 리스크, 수령기간, 수령금액, 세제혜택여부   
-class Portfolio_result(models.Model):
+# class Portfolio_result(models.Model):
+#     logic_info = models.OneToOneField(Portfolio_info, on_delete=models.CASCADE, null=True) #귀찮아서 일단 널 트루로 했는데 바꿔주기
+#     result_money = models.CharField(max_length=100)
+#     accumulate_return_rate = models.CharField(max_length=100)
+#     annual_average_return_rate = models.CharField(max_length=100)
+#     annual_highest_return_rate = models.CharField(max_length=100)
+#     annual_lowest_return_rate = models.CharField(max_length=100)
+#     accept_period = models.CharField(max_length=100)
+#     accept_money = models.CharField(max_length=100)
+#     win_rate = models.CharField(max_length=100)
+#     mdd = models.CharField(max_length=100)
+#     lisk = models.CharField(max_length=100)
+#     benefits = models.CharField(max_length=100)
+
+class Portfolio_result_temp(models.Model):
     logic_info = models.OneToOneField(Portfolio_info, on_delete=models.CASCADE, null=True) #귀찮아서 일단 널 트루로 했는데 바꿔주기
-    result_money = models.CharField(max_length=100)
-    accumulate_return_rate = models.CharField(max_length=100)
-    annual_average_return_rate = models.CharField(max_length=100)
-    annual_highest_return_rate = models.CharField(max_length=100)
-    annual_lowest_return_rate = models.CharField(max_length=100)
-    accept_period = models.CharField(max_length=100)
-    accept_money = models.CharField(max_length=100)
-    win_rate = models.CharField(max_length=100)
-    mdd = models.CharField(max_length=100)
-    lisk = models.CharField(max_length=100)
-    benefits = models.CharField(max_length=100)
-    
-class Notice(TimeStampedModel):
-    notice_name = models.CharField(max_length=100)
-    notice_detail = models.CharField(max_length=100)
-    views = models.CharField(max_length=100)
+    recipt_money = models.CharField(max_length=100)
+    recipt_period = models.CharField(max_length=100)
     

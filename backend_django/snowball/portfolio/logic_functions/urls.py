@@ -14,8 +14,8 @@ from rest_framework import routers
 portfolioRouter = routers.DefaultRouter()
 portfolioRouter.register(r'portfolio_info', PortfolioInfoApi)
 portfolioRouter.register(r'product_info', ProductInfoApi)
-portfolioRouter.register(r'portfolio_result', PortfolioResultApi)
-
+portfolioRouter.register(r'portfolioTempresult', PortfolioTempResultApi)
+portfolioRouter.register(r'portfolio_info_temp', PortfolioTempApi)
 
 urlpatterns =[
 ]
