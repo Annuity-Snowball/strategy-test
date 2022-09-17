@@ -663,38 +663,75 @@ export default function First() {
                 // console.log(newp);
                 onClose?.();
                 setList([]);
-                const Reigster = new FormData();
-                Reigster.append("portfolio_name" ,portfolio_name);
-                Reigster.append("strategy_number" ,strategy_lists.length);
-                Reigster.append("start_date" ,start);
-                Reigster.append("end_date" ,end);
-                Reigster.append("rebalancing_duration" ,"3");
-                Reigster.append("input_money" ,money);
-                Reigster.append("input_way" ,"0");
-                for(let i=0;i<strategy_lists.length;i++)
-                {
-                    Reigster.append("temp_id", String.valueOf(strategy_lists[i].temp_id));
-                    Reigster.append("second_group",strategy_lists[i].second_group);
-                    Reigster.append("third_group",strategy_lists[i].third_group);
-                    Reigster.append("name",strategy_lists[i].name);
-                    Reigster.append("number",strategy_lists[i].number);
-                    Reigster.append("rate",strategy_lists[i].rate);
-                    Reigster.append("upper",strategy_lists[i].upper);
-                    Reigster.append("lower",strategy_lists[i].lower);
-                }
+                const Reigster = [
+                    {
+                        "portfolio_name": "test",
+                        "strategy_number": "2",
+                        "start_date": "2019-10-01",
+                        "end_date": "2020-05-01",
+                        "rebalancing_duration": "3",
+                        "input_money": "600000",
+                        "input_way": "0",
+                        "user_id": 1
+                    },
+                    {
+                        "temp_id":"mult_test",
+                        "first_group":"mult_test",
+                        "second_group":"mult_test",
+                        "third_group":"mult_test",
+                        "name":"PER 저",
+                        "number":"2",
+                        "rate":"40",
+                        "upper":"0",
+                        "lower":"0"
+                    },
+                    {
+                        "temp_id":"mult_test2",
+                        "first_group":"mult_test2",
+                        "second_group":"mult_test2",
+                        "third_group":"mult_test2",
+                        "name":"PER 고",
+                        "number":"3",
+                        "rate":"60",
+                        "upper":"0",
+                        "lower":"0"
+                    }
+                ]
+                // Reigster.append("portfolio_name" ,portfolio_name);
+                // Reigster.append("strategy_number" ,strategy_lists.length);
+                // Reigster.append("start_date" ,start);
+                // Reigster.append("end_date" ,end);
+                // Reigster.append("rebalancing_duration" ,"3");
+                // Reigster.append("input_money" ,money);
+                // Reigster.append("input_way" ,"0");
+                // for(let i=0;i<strategy_lists.length;i++)
+                // {
+                //     Reigster.append("temp_id", String.valueOf(strategy_lists[i].temp_id));
+                //     Reigster.append("second_group",strategy_lists[i].second_group);
+                //     Reigster.append("third_group",strategy_lists[i].third_group);
+                //     Reigster.append("name",strategy_lists[i].name);
+                //     Reigster.append("number",strategy_lists[i].number);
+                //     Reigster.append("rate",strategy_lists[i].rate);
+                //     Reigster.append("upper",strategy_lists[i].upper);
+                //     Reigster.append("lower",strategy_lists[i].lower);
+                // }
                 console.log(Reigster);
-                try {
-                    const response = await axios(
-                      {
-                        method : "POST",
-                        url :'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', // 
-                        data : Reigster,
-                        headers : {"Content-Type" : "multipart/form-data"},
-                      });
+                // const jstest = JSON.stringify(Reigster);
+                const result = await axios.post(
+                    'http://localhost:8000/port_api/portfolio_info/allinone/create/', Reigster);
+                console.log(result)
+                // try {
+                //     const response = await axios(
+                //       {
+                //         method : "POST",
+                //         url :'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', // 
+                //         data : Reigster,
+                //         headers : {"Content-Type" : "applicatoin/json"},
+                //       });
 
-                  } catch (err) {
-                    console.log(err);
-                  }
+                //   } catch (err) {
+                //     console.log(err);
+                //   }
             };
             return (
               <>
