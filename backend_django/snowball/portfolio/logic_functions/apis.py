@@ -18,7 +18,7 @@ class UserApi(viewsets.ModelViewSet):
     permission_class = [permissions.IsAuthenticated]
         
   
-@method_decorator(csrf_exempt,name='dispatch')  
+# @method_decorator(csrf_exempt,name='dispatch')  
 class ProductInfoApi(viewsets.ModelViewSet):
     queryset = Product_info.objects.all()
     serializer_class = ProductInfoSerializer
@@ -56,7 +56,7 @@ class ProductInfoApi(viewsets.ModelViewSet):
             self.create(serializer)
         return super().list(self, request, *args, **kwargs)
     
-@method_decorator(csrf_exempt,name='dispatch')
+# @method_decorator(csrf_exempt,name='dispatch')
 class PortfolioInfoApi(viewsets.ModelViewSet):
     queryset = Portfolio_info.objects.all()
     serializer_class = PortfolioInfoSerializer
@@ -153,13 +153,3 @@ class PortfolioResultApi(viewsets.ModelViewSet):
             rtn = serializer.create(request, serializer.data)
             return Response(PortfolioResultSerializer(rtn).data, status=status.HTTP_201_CREATED)
         pass
-    
-
-class CalcApi(APIView):
-    # 아이디값을 받아서 포트폴리오, 프로덕트 인포 출력하기
-    def calcInsert(self, request, format=None):
-        serializer=calc_serializer(data=request.data)
-        if serializer.is_valid():
-            # print(request.data)
-            print(serializer.validated_data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
