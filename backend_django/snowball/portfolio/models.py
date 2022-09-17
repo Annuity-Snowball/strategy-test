@@ -1,4 +1,3 @@
-import email
 from django.db import models
 from django.contrib.auth.models import User as U
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
@@ -11,11 +10,6 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
-
-# class Payment_info(TimeStampedModel):
-#     payment_period = models.CharField(max_length=100)
-#     payment_way = models.CharField(max_length=100)
-#     payment_money = models.CharField(max_length=100)
 
 class UserManager(BaseUserManager):
     # 일반 user 생성
@@ -80,11 +74,16 @@ class Portfolio_info(models.Model):
   
 class Product_info(models.Model):
     portfolio = models.ForeignKey(Portfolio_info, on_delete=models.CASCADE, null=False)
+    temp_id = models.CharField(max_length=100, default="0")
     first_group = models.CharField(max_length=100)
     second_group = models.CharField(max_length=100)
     third_group = models.CharField(max_length=100)
-    detail = models.CharField(max_length=100)
-    rate = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(max_length=100)
+    number = models.CharField(max_length=1000, default="0") # 테이블 드랍을 안해서 디폴트 값이 있는데 추후 삭제할 것.
+    rate = models.CharField(max_length=100, null=True, blank=True) # 테이블 드랍을 안해서 블랭크 값이 있는데 추후 삭제할 것.
+    upper = models.CharField(max_length=30, null=True, blank=True)
+    lower = models.CharField(max_length=30, null=True, blank=True)
+    
   
 # 결과금액, 누적수익율, 연평균수익율, MDD, 승률, 연최고수익률, 연최저수익률, 리스크, 수령기간, 수령금액, 세제혜택여부   
 class Portfolio_result(models.Model):

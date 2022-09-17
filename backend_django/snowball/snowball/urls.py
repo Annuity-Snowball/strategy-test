@@ -19,6 +19,8 @@ from django.views.generic import TemplateView
 from portfolio.logic_functions.urls import portfolioRouter as portfolio_router
 from portfolio.service_function.urls import ServiceRouter as service_router
 from rest_framework import urls
+from rest_framework_simplejwt import views as jwt_views
+from rest_framework import routers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +28,6 @@ urlpatterns = [
     path('service_api/', include(service_router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     
-    re_path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    re_path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]

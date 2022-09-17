@@ -31,7 +31,8 @@ class PortfolioInfoSerializer(serializers.Serializer):
         instance = Portfolio_info()        
         
         # 아이디값을 세션에서 얻어야할 듯.
-        users = User.objects.filter(id=request.user.id).first()
+        # users = User.objects.filter(id=request.user.id).first()
+        users = User.objects.filter(id=4).first()
         
         instance.user = users
         
@@ -51,11 +52,15 @@ class PortfolioInfoSerializer(serializers.Serializer):
         return instance  
     
 class ProductInfoSerializer(serializers.Serializer):
+    temp_id = serializers.CharField(max_length=100)
     first_group = serializers.CharField(max_length=100)
     second_group = serializers.CharField(max_length=100)
     third_group = serializers.CharField(max_length=100)
-    detail = serializers.CharField(max_length=100)
+    name = serializers.CharField(max_length=100)
+    number = serializers.CharField(max_length=100)
     rate = serializers.CharField(max_length=100)
+    upper = serializers.CharField(max_length=100, default="0")
+    lower = serializers.CharField(max_length=100, default="0")
     portfolio = PortfolioInfoSerializer(read_only=True) 
     
     class Meta:
@@ -66,15 +71,17 @@ class ProductInfoSerializer(serializers.Serializer):
     def create(self, request, data, commit=True):
         instance = Product_info()
         
+        instance.temp_id = data.get("temp_id")
         instance.first_group = data.get("first_group")
         instance.second_group = data.get("second_group")
         instance.third_group = data.get("third_group")
-        instance.delete = data.get("detail")
+        instance.name = data.get("name")
+        instance.number = data.get("number")
         instance.rate = data.get("rate")
-        
-        portfolio_id = data.get("portfolio")
-        
-        portfolios = Portfolio_info.objects.filter(id=portfolio_id).first()
+        instance.upper = data.get("upper")
+        instance.lower = data.get("lower")
+         
+        portfolios = Portfolio_info.objects.filter(id=instance.temp_id).first()
         instance.portfolio = portfolios
         
         if commit:
@@ -128,3 +135,8 @@ class PortfolioResultSerializer(serializers.Serializer):
             except Exception as e:
                 print(e)
         return instance 
+
+class calc_serializer(serializers.Serializer):
+    portfolio_id = serializers.IntegerField()
+    
+    
