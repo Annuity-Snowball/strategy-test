@@ -12,6 +12,63 @@ import AuthContext from './Context/AuthProvider';
 >
   <path fill="current" fill-rule="evenodd" d="...." />
 </svg>
+export default function LoginPage() {
+  const [nickname,setNickname]=useState("");
+  const [password,setPassword]=useState("");
+  const {setAuth} = useContext(AuthContext);
+// Login.js
+// imports
+  const handleSubmit = async (e) => {
+    const Reigster = new FormData();
+    Reigster.append("nickname",nickname);
+    Reigster.append("password",password);
+    e.preventDefault();
+    try {
+      const response = await axios(
+        {
+          method : "POST",
+          url :'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/api/token/', // /api/token/refresh/
+          data : Reigster,
+          headers : {"Content-Type" : "multipart/form-data",},
+        });
+       console.log(Reigster);
+       const accessToken = response?.data?.accessToken;
+       const roles = response?.data?.roles;
+       setAuth({ nickname, password, roles, accessToken });
+      alert("로그인성공!");
+    } catch (err) {
+      console.log(err);
+      if (!err?.response) {
+        alert("No Server Response");
+      } else if (err.response?.status === 400) {
+        alert("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        alert("Unauthorized");
+      } else {
+        alert("Login Failed");
+      }
+    }
+  };
+  return (
+    <>
+    <div className='LoginLayout'>
+        <div className='Logintitle'>
+            <Login1>로그인</Login1>
+            <Login2>LOG-IN</Login2>
+        </div>
+    </div>
+    <Title onSubmit={handleSubmit}>
+            <Login3>회원 로그인</Login3>
+            <Login4>가입시 입력한 정보로 로그인 하세요</Login4>
+            <Input name="nickname" placeholder='닉네임를 입력하세요' onChange={e=>setNickname(e.target.value)}/>
+            <Input name="password" placeholder='비밀번호를 입력하세요'onChange={e=>setPassword(e.target.value)}/>
+            <Login5>로그인</Login5>
+            <Login6><div>회원가입</div><div>비밀번호찾기</div></Login6>
+            <Kakao><KaKao/>카카오톡으로 시작</Kakao>
+    </Title>
+    </>
+  );
+}
 const Login1 =styled.div`
 font-family: 'Noto Sans';
 font-style: normal;
@@ -129,60 +186,3 @@ display : flex;
 flex-direction: column;
 align-items:center;
 `;
-export default function LoginPage() {
-  const [nickname,setNickname]=useState("");
-  const [password,setPassword]=useState("");
-  const {setAuth} = useContext(AuthContext);
-// Login.js
-// imports
-  const handleSubmit = async (e) => {
-    const Reigster = new FormData();
-    Reigster.append("username",nickname);
-    Reigster.append("password",password);
-    e.preventDefault();
-    try {
-      const response = await axios(
-        {
-          method : "POST",
-          url :'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/api/token/', // 
-          data : Reigster,
-          headers : {"Content-Type" : "multipart/form-data",},
-        });
-       console.log(Reigster);
-       const accessToken = response?.data?.accessToken;
-       const roles = response?.data?.roles;
-       setAuth({ nickname, password, roles, accessToken });
-      alert("로그인성공!");
-    } catch (err) {
-      console.log(err);
-      if (!err?.response) {
-        alert("No Server Response");
-      } else if (err.response?.status === 400) {
-        alert("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        alert("Unauthorized");
-      } else {
-        alert("Login Failed");
-      }
-    }
-  };
-  return (
-    <>
-    <div className='LoginLayout'>
-        <div className='Logintitle'>
-            <Login1>로그인</Login1>
-            <Login2>LOG-IN</Login2>
-        </div>
-    </div>
-    <Title onSubmit={handleSubmit}>
-            <Login3>회원 로그인</Login3>
-            <Login4>가입시 입력한 정보로 로그인 하세요</Login4>
-            <Input name="nickname" placeholder='닉네임를 입력하세요' onChange={e=>setNickname(e.target.value)}/>
-            <Input name="password" placeholder='비밀번호를 입력하세요'onChange={e=>setPassword(e.target.value)}/>
-            <Login5>로그인</Login5>
-            <Login6><div>회원가입</div><div>비밀번호찾기</div></Login6>
-            <Kakao><KaKao/>카카오톡으로 시작</Kakao>
-    </Title>
-    </>
-  );
-}

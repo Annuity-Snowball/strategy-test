@@ -1,7 +1,10 @@
 import { border } from '@chakra-ui/react';
 import React,{useState,useEffect} from 'react'
+import PortfolioPrint from './PrintPF';
 import X from '../img/x.png'
 import styled from 'styled-components';
+import Graph from './Graph';
+import Graph2 from './Graph2';
 import { ReactComponent as Ten } from "../img/ten.svg";
 import { ReactComponent as BlackArrow } from "../img/blackarrow.svg"
 import { ReactComponent as WhiteArrow } from "../img/whitearrow.svg"
@@ -254,17 +257,18 @@ font-family: 'Inter';
 `;
 export default function First() {
     const [click1,setClick1]=useState(false);
+    const [show,setShow]=useState(false);
     const [strategy_lists,setList]=useState([]);
     const [nextId,setNextId]=useState(1);
     const [sum,setSum]=useState(0);
     const [isOpen,setIsOpen]=useState(false);
     const [portfolio_name,setPortfolio_name]=useState("");
-    const [Portfolio,setPortfolio]=useState([])
+    const [tabledata,setTabledata]=useState("");
     useEffect ( () =>{
         setClick1(false);
         setNextId(strategy_lists.length);
         console.log(nextId);
-    },[strategy_lists])
+    },[strategy_lists,tabledata])
     // 로그인을 하면 jwt를 줄건데
     // 그걸 니가 세션에 저장해야하고
     // 그 토큰에 유저 정보가 들어가있음
@@ -279,6 +283,7 @@ export default function First() {
         setIsOpen(true);
     }
         return (
+            <>
         <InputFrame>
         <Frame>
             <Input name="portfolio_name" placeholder='포트폴리오 제목을 입력하세요' onChange={ (e) => setPortfolio_name(e.target.value)}/>
@@ -307,6 +312,10 @@ export default function First() {
         <BlackArrow width="24px"/>
         {click1 ? <Second/> : null}
         </InputFrame>
+        {show ? (<PortfolioPrint data={setTabledata}/>) :null}
+        {show ? (<Graph/> ) :null}
+        {show ? (<Graph2/>) :null}
+        </>
         );
         function Second(props) {
             const [click,setClick]=useState(false);
@@ -654,47 +663,40 @@ export default function First() {
                 input_money: money,
                 input_way: "0",
                 }
-                // const newp=[PortFolio_profile];
-                // for(var i=0; i < strategy_lists.length;i++)
-                // {
-                //     newp.push(strategy_lists[i]);
-                // }
-                // setPortfolio(newp);
-                // console.log(newp);
                 onClose?.();
                 setList([]);
                 const Reigster = [
                     {
-                        "portfolio_name": "test",
-                        "strategy_number": "2",
-                        "start_date": "2019-10-01",
-                        "end_date": "2020-05-01",
+                        "portfolio_name": portfolio_name,
+                        "strategy_number": String(strategy_lists.length),
+                        "start_date": start,
+                        "end_date": end,
                         "rebalancing_duration": "3",
-                        "input_money": "600000",
+                        "input_money": money,
                         "input_way": "0",
                         "user_id": 1
                     },
                     {
-                        "temp_id":"mult_test",
-                        "first_group":"mult_test",
-                        "second_group":"mult_test",
-                        "third_group":"mult_test",
-                        "name":"PER 저",
-                        "number":"2",
-                        "rate":"40",
-                        "upper":"0",
-                        "lower":"0"
+                        "temp_id":String(strategy_lists[0].temp_id),
+                        "first_group":strategy_lists[0].first_group,
+                        "second_group":strategy_lists[0].second_group,
+                        "third_group":strategy_lists[0].third_group,
+                        "name":strategy_lists[0].name,
+                        "number":strategy_lists[0].number,
+                        "rate":strategy_lists[0].rate,
+                        "upper":strategy_lists[0].upper,
+                        "lower":strategy_lists[0].lower
                     },
                     {
-                        "temp_id":"mult_test2",
-                        "first_group":"mult_test2",
-                        "second_group":"mult_test2",
-                        "third_group":"mult_test2",
-                        "name":"PER 고",
-                        "number":"3",
-                        "rate":"60",
-                        "upper":"0",
-                        "lower":"0"
+                        "temp_id":String(strategy_lists[1].temp_id),
+                        "first_group":strategy_lists[1].first_group,
+                        "second_group":strategy_lists[1].second_group,
+                        "third_group":strategy_lists[1].third_group,
+                        "name":strategy_lists[1].name,
+                        "number":strategy_lists[1].number,
+                        "rate":strategy_lists[1].rate,
+                        "upper":strategy_lists[1].upper,
+                        "lower":strategy_lists[1].lower
                     }
                 ]
                 // Reigster.append("portfolio_name" ,portfolio_name);
@@ -718,20 +720,10 @@ export default function First() {
                 console.log(Reigster);
                 // const jstest = JSON.stringify(Reigster);
                 const result = await axios.post(
-                    'http://localhost:8000/port_api/portfolio_info/allinone/create/', Reigster);
-                console.log(result)
-                // try {
-                //     const response = await axios(
-                //       {
-                //         method : "POST",
-                //         url :'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', // 
-                //         data : Reigster,
-                //         headers : {"Content-Type" : "applicatoin/json"},
-                //       });
-
-                //   } catch (err) {
-                //     console.log(err);
-                //   }
+                    'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', Reigster);
+                setTabledata(result);
+                console.log(result);
+                setShow(true);
             };
             return (
               <>
@@ -742,7 +734,7 @@ export default function First() {
                   <ModalFrame><span>투자종료일</span><ModalInput name="end_date" placeholder="ex) 2019-11-11" onChange={(e) => {setEnd(e.target.value)}}/></ModalFrame>
                   <ModalFrame><span>납입금액 </span><ModalInput name="input_money" placeholder="ex) 60000" onChange={(e) => {setMoney(e.target.value)}} style={{width: "150px", marginRight : "8px"}}/>원</ModalFrame>
                   <ModalFrame><span>납입방법 </span><ModalInput name="input_way" placeholder="ex) 0" /></ModalFrame>
-                  <div style={{width : "100%", display : "flex", flexDirection : "row", marginTop:"auto"}}><Button11 onClick={handleClose}>취소</Button11><Button12 type="submit">로그인</Button12></div>
+                  <div style={{width : "100%", display : "flex", flexDirection : "row", marginTop:"auto"}}><Button11 onClick={handleClose}>취소</Button11><Button12 type="submit">완료</Button12></div>
                 </ModalWrap>
               </Overlay>
               </>

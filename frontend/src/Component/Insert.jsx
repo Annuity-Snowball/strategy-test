@@ -1,7 +1,6 @@
 import React from 'react'
 import Portfolio from './Portfolio';
 import PortfolioPrint from './PrintPF';
-import Graph from './Graph';
 import styled from 'styled-components';
 import {Link } from "react-router-dom";
 const MainLayout = styled.div`
@@ -54,11 +53,7 @@ export default function Insert() {
   return (
     <MainLayout>
     <Title><Text>새 포트폴리오 <span>등록하기</span></Text><Text1>등록된 포트폴리오는 ‘내포트폴리오'에서 확인하실 수 있습니다.</Text1>&nbsp;<Link className="abc" to="/myportfolio">바로가기</Link></Title>
-    
     <Portfolio />
-    <Title><Text>포트폴리오 <span>결과보기</span></Text><Text1>등록된 포트폴리오의 분석 결과를 아래에서 보실수 있습니다.</Text1></Title>
-    <PortfolioPrint/>
-    <Graph/>
     </MainLayout>
   )
 }

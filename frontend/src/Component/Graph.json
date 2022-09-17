@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "type": "결과금액",
+      "notbenefit": "67,892",
+      "taxbenefit": "70,000"
+    },
+    {
+      "id": 2,
+      "type": "누적수익률",
+      "notbenefit": "280%",
+      "taxbenefit": "300%"
+    },
+    {
+      "id": 3,
+      "type": "연평균 수익률",
+      "notbenefit": "13%",
+      "taxbenefit": "15%"
+    },
+    {
+      "id": 4,
+      "type": "MDD",
+      "notbenefit": "11%",
+      "taxbenefit": "12%"
+    }
+  ]
