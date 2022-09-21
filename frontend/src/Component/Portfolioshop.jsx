@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as Ten } from "../img/ten.svg";
 import { ReactComponent as Search } from "../img/Search.svg"
 import BoxModel from './BoxModel';
+import BoxModel2 from './BoxModel2';
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="current"
@@ -149,11 +150,11 @@ export default function Portfolioshop() {
     <MainLayout>
     <Title><TextC><span>HOT </span>PORTFOLIO</TextC><Text1>눈굴러가요의 추천 포트폴리오</Text1></Title>
     <Frame1>
-    <BoxModel/><BoxModel/><BoxModel/>
+    <BoxModel2 name="눈잘던지는사람" money="600,000" rate="90.88" period="2" /><BoxModel name="나무캐기장인" money="800,000" rate="77.88" period="2"/><BoxModel name="노바회장" money="800,000" rate="77.88" period="2"/>
     </Frame1>
     <Title><TextC><span>SNOW </span>PICK</TextC><Text1>스노우 피플이 가장 많이 선택한 픽~!</Text1></Title>
     <Frame1>
-    <BoxModel/><BoxModel/><BoxModel/>
+    <BoxModel name="홍길동" money="100,000" rate="54.88" period="2"/><BoxModel name="기명이" money="300,000" rate="47.88" period="2"/><BoxModel name="김철수" money="600,000" rate="30.88" period="2"/>
     </Frame1>
     <Title><TextC><span>ALL </span>PORTFOLIO</TextC><Text1>모든 포트폴리오</Text1></Title>
     <Frame2>

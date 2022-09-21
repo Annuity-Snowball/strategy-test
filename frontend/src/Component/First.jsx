@@ -384,13 +384,13 @@ export default function First() {
                 <Span>3개중 하나 선택해주세요</Span>
                 </div>
                     <div className={`btn ${ tab ==='curr' ? 'active' : ''}`} name="ETF" onClick={ (e) => {setTab((prev) => { if(prev !== 'curr'){return 'curr'}else{return""}});setSelect(e.target.innerText);}}>
-                        ETF
+                        ETF{tab === 'curr' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev1' ? 'active' : ''}`} name="리츠" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev1'){return 'prev1'}else{return""}});setSelect(e.target.innerText);}}>
-                        리츠
+                        리츠{tab === 'prev1' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                     <div className={`btn ${ tab ==='prev2' ? 'active' : ''}`} name="예금" onClick={ (e) => {setTab((prev) => { if(prev !== 'prev2'){return 'prev2'}else{return""}});setSelect(e.target.innerText);}}>
-                        예금
+                        예금{tab === 'prev2' ? (<div className='whitebtn'><WhiteArrow/></div>):(<div className='blackbtn'><BlackArrow/></div>)}
                     </div>
                 </Frame2>
                 {/* {click ? (
@@ -808,15 +808,6 @@ export default function First() {
 
             const handleSubmit = async (event) =>{
                 event.preventDefault();
-                const PortFolio_profile={
-                portfolio_name: portfolio_name,
-                strategy_number: strategy_lists.length,
-                start_date: start,
-                end_date: end,
-                rebalancing_duration: "3",
-                input_money: money,
-                input_way: "0",
-                }
                 onClose?.();
                 // setList([]);
                 const Reigster = [
@@ -853,28 +844,9 @@ export default function First() {
                         "lower":strategy_lists[1].lower
                     }
                 ]
-                // Reigster.append("portfolio_name" ,portfolio_name);
-                // Reigster.append("strategy_number" ,strategy_lists.length);
-                // Reigster.append("start_date" ,start);
-                // Reigster.append("end_date" ,end);
-                // Reigster.append("rebalancing_duration" ,"3");
-                // Reigster.append("input_money" ,money);
-                // Reigster.append("input_way" ,"0");
-                // for(let i=0;i<strategy_lists.length;i++)
-                // {
-                //     Reigster.append("temp_id", String.valueOf(strategy_lists[i].temp_id));
-                //     Reigster.append("second_group",strategy_lists[i].second_group);
-                //     Reigster.append("third_group",strategy_lists[i].third_group);
-                //     Reigster.append("name",strategy_lists[i].name);
-                //     Reigster.append("number",strategy_lists[i].number);
-                //     Reigster.append("rate",strategy_lists[i].rate);
-                //     Reigster.append("upper",strategy_lists[i].upper);
-                //     Reigster.append("lower",strategy_lists[i].lower);
-                // }
                 console.log(Reigster);
-                // const jstest = JSON.stringify(Reigster);
                 const result = await axios.post(
-                    'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', Reigster);
+                    'http://ec2-43-201-61-246.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', Reigster);
                 setTabledata(result);
                 console.log(result);
                 setShow(true);
@@ -887,7 +859,6 @@ export default function First() {
                   <ModalFrame><span>투자시작일</span><ModalInput name="start_date" placeholder="ex) 2011-11-11" onChange={(e) => {setStart(e.target.value)}}/></ModalFrame>
                   <ModalFrame><span>투자종료일</span><ModalInput name="end_date" placeholder="ex) 2019-11-11" onChange={(e) => {setEnd(e.target.value)}}/></ModalFrame>
                   <ModalFrame><span>납입금액 </span><ModalInput name="input_money" placeholder="ex) 60000" onChange={(e) => {setMoney(e.target.value)}} style={{width: "150px", marginRight : "8px"}}/>원</ModalFrame>
-                  <ModalFrame><span>납입방법 </span><ModalInput name="input_way" placeholder="ex) 0" /></ModalFrame>
                   <div style={{width : "100%", display : "flex", flexDirection : "row", marginTop:"auto"}}><Button11 onClick={handleClose}>취소</Button11><Button12 type="submit">완료</Button12></div>
                 </ModalWrap>
               </Overlay>
@@ -905,7 +876,6 @@ left : 0;
 right : 0;
 background: rgba(0, 0, 0, 0.8);
 text-align :center;
-
 `;
 const ModalWrap = styled.form`
 width : 600px;
