@@ -44,13 +44,11 @@
 ## ✅ 스노우샵
 ![스노우샾](https://user-images.githubusercontent.com/42410000/194356968-9af8554f-284a-4ed6-9011-886febc99744.png)
 
-## ✅ 로그인 
+## ✅ 로그인
 ![로그인](https://user-images.githubusercontent.com/42410000/194356929-228c1ae8-52da-435b-95fc-927ada2f2d32.png)
 
-## ✅ 회원가입
+## ✅ 회원가입 & 이용약관
 ![회원가입](https://user-images.githubusercontent.com/42410000/194359201-a44dffac-3113-4af0-ba3f-11129e7882e6.png)
-
-## ✅ 이용약관 
 ![약관](https://user-images.githubusercontent.com/42410000/194359228-75d93266-eee7-474f-8e54-af5ae695cbe0.png)
 
 ## 테스트 환경(배포사이트)
