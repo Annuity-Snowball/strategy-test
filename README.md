@@ -51,12 +51,13 @@
 ![회원가입](https://user-images.githubusercontent.com/42410000/194359201-a44dffac-3113-4af0-ba3f-11129e7882e6.png)
 ![약관](https://user-images.githubusercontent.com/42410000/194359228-75d93266-eee7-474f-8e54-af5ae695cbe0.png)
 
-## 테스트 환경(배포사이트)
+## ✅ 테스트 환경(배포사이트)
    * **[연금스노우볼사이트](https://kwonja.github.io/)**
 
-## 개발시연영상
+## ✅ 개발시연영상
 https://www.youtube.com/watch?v=oFdkSmKyyI0
 
+## 깃허브규칙, 개발환경, 개발버전 등등 있지만 일단 생략
 # test of making strategy page
 
 ## config backend env
