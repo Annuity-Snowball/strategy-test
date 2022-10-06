@@ -1,8 +1,10 @@
-# 팀 연금스노우볼 :pushpin:
+# Team 연금스노우볼 :pushpin:
 ## 개발일정 :triangular_flag_on_post:
 <b>2022년 4월 ~ 현재 개발중</b>
-##  빅데이터를 활용한 연금 ETF 서비스
-## :family: 팀원 소개
+##  LOGO 
+![logo1](https://user-images.githubusercontent.com/42410000/194292630-4435e322-22ec-4a1a-95b5-035bec96097a.png)
+
+## :family: 팀원 소개 :family:
 <details markdown="1">
 <summary><strong>팀원</strong></summary>
 
@@ -19,7 +21,20 @@
     * 적고싶은대로 적어주세용
 </details>
 
+## ⚽ 프로젝트 배경
 
+## ⚽ 프로젝트 목표
+
+## 동작방식
+
+## 개발/배포
+
+## 활용/참고 정보
+
+## 테스트 환경(배포사이트)
+   * **[연금스노우볼사이트](https://kwonja.github.io/)**
+
+## 개발시연영상
 
 # test of making strategy page
 
