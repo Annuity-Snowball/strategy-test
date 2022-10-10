@@ -1,6 +1,6 @@
 from portfolio.logic_functions.serializers import PortfolioTempSerializer
 from portfolio.models import User, Portfolio_info, Product_info, Portfolio_result_temp
-from portfolio.logic_functions.serializers import PortfolioInfoSerializer, UserSerializer, ProductInfoSerializer, PortfolioTempResultSerializer
+from portfolio.logic_functions.serializers import PortfolioInfoSerializer, UserSerializer, ProductInfoSerializer, PortfolioTempResultSerializer, CustomTokenObtainPairSerializer
 from rest_framework import viewsets     
 from rest_framework.renderers import JSONRenderer 
 from rest_framework import permissions
@@ -12,6 +12,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from portfolio.core.core_code import backed_core
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    # Replace the serializer with your custom
+    serializer_class = CustomTokenObtainPairSerializer
 
 class UserApi(viewsets.ModelViewSet):
     queryset = User.objects.all()
