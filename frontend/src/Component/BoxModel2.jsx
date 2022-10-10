@@ -98,7 +98,7 @@ export default function BoxModel(props) {
                 "start_date": "2019-01-01",
                 "end_date": "2020-05-01",
                 "rebalancing_duration": "3",
-                "input_money": "600000",
+                "input_money": "500000",
                 "input_way": "0",
                 "user_id": 1
             },
@@ -109,7 +109,7 @@ export default function BoxModel(props) {
                 "third_group":"PER",
                 "name":"PER 저",
                 "number":"2",
-                "rate":"40",
+                "rate":"30",
                 "upper":"0",
                 "lower":"0"
             },
@@ -120,7 +120,7 @@ export default function BoxModel(props) {
               "third_group":"PBR",
               "name":"PBR 고",
               "number":"3",
-              "rate":"60",
+              "rate":"70",
               "upper":"0",
               "lower":"0"
             }

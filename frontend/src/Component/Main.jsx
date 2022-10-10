@@ -2,6 +2,10 @@ import React,{useState} from 'react'
 import styled from 'styled-components';
 import { ReactComponent as Image } from "../img/image.svg"
 import { ReactComponent as Image2 } from "../img/image2.svg"
+import { ReactComponent as Sub1 } from "../img/sub1.svg"
+import { ReactComponent as Sub2 } from "../img/sub2.svg"
+import { ReactComponent as Sub3 } from "../img/sub3.svg"
+import { ReactComponent as Sub4 } from "../img/sub4.svg"
 import { ReactComponent as WhiteArrow } from "../img/whitearrow.svg"
 import { ReactComponent as BlackArrow } from "../img/blackarrow.svg"
 
@@ -150,15 +154,15 @@ export default function Main() {
       </WhatDetail>
       <What bottomsize="8px"><div>How do I use</div>&nbsp;<div style={{color: "#66C6A3", fontWeight: "700"}}>Snowball</div><div style={{fontWeight: "700"}}>?</div></What>
       <MenuUl>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
-        <Menu>연금을 알차게 사용하는 방법? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>ETF란 무엇인가? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>연금을 알차게 사용하는 방법 <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>왜 연금 스노우볼을 사용해야하는가? <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>연금스노우볼 조직도 <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>공지사항 <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>고객센터 <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>문의사항 <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>우리가 사용하는 기술 <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
+        <Menu>About US <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
       </MenuUl>
     </MainLayout>
   )
@@ -170,10 +174,10 @@ function News()
   return(
     <>
     <SubTitle>
-      <SubNews><Image2/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
-      <SubNews><Image2/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
-      <SubNews><Image2/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
-      <SubNews><Image2/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
+      <SubNews><Sub1/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
+      <SubNews><Sub2/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
+      <SubNews><Sub3/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
+      <SubNews><Sub4/><TitleText1>이번 주 연금 복권 당첨자 전액 아누티 스노우볼 사용한다 밝혀!</TitleText1></SubNews>
     </SubTitle>
     </>
   );
