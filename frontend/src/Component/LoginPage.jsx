@@ -2,8 +2,8 @@ import React,{useState,useEffect,useRef} from 'react'
 import styled from 'styled-components';
 import axios from 'axios'
 import { ReactComponent as KaKao } from "../img/Kakao.svg";
-import { useContext } from 'react';
-import AuthContext from './Context/AuthProvider';
+const Buffer = require('buffer/').Buffer;
+axios.defaults.withCredentials = true; //이걸  true로 해줘야 refresh토큰을 주고받을수 있다.
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="current"
@@ -15,7 +15,6 @@ import AuthContext from './Context/AuthProvider';
 export default function LoginPage() {
   const [nickname,setNickname]=useState("");
   const [password,setPassword]=useState("");
-  const {setAuth} = useContext(AuthContext);
 // Login.js
 // imports
   const handleSubmit = async (e) => {
@@ -27,15 +26,26 @@ export default function LoginPage() {
       const response = await axios(
         {
           method : "POST",
-          url :'http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/api/token/', // /api/token/refresh/
+          url :'http://ec2-43-201-61-246.ap-northeast-2.compute.amazonaws.com:8000/api/token/', // /api/token/refresh/
           data : Reigster,
           headers : {"Content-Type" : "multipart/form-data",},
         });
-       console.log(Reigster);
-       const accessToken = response?.data?.accessToken;
-       const roles = response?.data?.roles;
-       setAuth({ nickname, password, roles, accessToken });
+       console.log(response);
       alert("로그인성공!");
+      localStorage.clear();
+      // localStorage.setItem('nickname', response.data.nickname);
+      // localStorage.setItem('password', response.data.password);
+      localStorage.setItem('token', response.data.access);
+      var token = response.data.access;
+      var base64Payload = token.split('.')[1]; //value 0 -> header, 1 -> payload, 2 -> VERIFY SIGNATURE
+      var payload = Buffer.from(base64Payload, 'base64'); 
+      var result = JSON.parse(payload.toString());
+      localStorage.setItem('nickname',result.name);
+      console.log(result);
+      window.location.replace('http://localhost:3000');
+      // setCookie('access-token',response.data['access-token']);
+      // setCookie('user-name',nickname);
+
     } catch (err) {
       console.log(err);
       if (!err?.response) {

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {Route,Routes,NavLink, Link } from "react-router-dom";
 import '../css/App.css';
 import Modal from './Modal';
@@ -37,18 +37,33 @@ padding:  0px;
 color: #000000;
 border : none;
 `;
+const Hello =styled.button`
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+background: #66C6A3;
+color: #000000;
+border : none;
+`;
 export default function Banner() {
   const [isopen,setIsopen]=useState(false);
 
   const OnClick = () =>{
     setIsopen(true);
   }
+  const handleLogout = () =>{
+    localStorage.clear();
+    window.location.replace('http://localhost:3000/');
+  }
   return (
     <>
             <div className='headertop'>
             <SubTitle>
-            <Link to="/login"><Login>LOGIN</Login></Link>
-            <Link to="/join"><Signup>SIGNUP</Signup></Link>
+              {
+                localStorage.getItem('token') === null ? (<>
+                <Link to="/login"><Login>LOGIN</Login></Link>
+                <Link to="/join"><Signup>SIGNUP</Signup></Link></>) : (<><Hello>{localStorage.getItem("nickname")}님!  환영합니다!</Hello><Signup onClick={handleLogout}>로그아웃</Signup></>)
+              }
             </SubTitle>
             </div>
             <nav className="header">

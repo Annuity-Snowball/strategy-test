@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
 import styled from 'styled-components';
-import { ReactComponent as Image } from "../img/image.svg"
-import { ReactComponent as Image2 } from "../img/image2.svg"
+import { ReactComponent as Most } from "../img/image.svg"
 import { ReactComponent as Sub1 } from "../img/sub1.svg"
 import { ReactComponent as Sub2 } from "../img/sub2.svg"
 import { ReactComponent as Sub3 } from "../img/sub3.svg"
@@ -149,7 +148,7 @@ export default function Main() {
       <What bottomsize="3px"><div>What is</div>&nbsp;<div style={{color: "#FF8540", fontWeight: "700"}}>Annuity</div><div style={{fontWeight: "700"}}>?</div></What>
       <WhatDetail>
 
-        <Title><Image width = "93.1%"/><TitleText>연금은 당신의 인생에 큰 도움이 될 것입니다! 그런데 이 페이지는 사실 애니메이션으로 대체될 것입니다...</TitleText><Date>Jun 21, 2022 at 04:07 am KR</Date></Title>
+        <Title><Most width = "93.1%"/><TitleText>연금은 당신의 인생에 큰 도움이 될 것입니다! 그런데 이 페이지는 사실 애니메이션으로 대체될 것입니다...</TitleText><Date>Jun 21, 2022 at 04:07 am KR</Date></Title>
         <News/>
       </WhatDetail>
       <What bottomsize="8px"><div>How do I use</div>&nbsp;<div style={{color: "#66C6A3", fontWeight: "700"}}>Snowball</div><div style={{fontWeight: "700"}}>?</div></What>
@@ -165,6 +164,7 @@ export default function Main() {
         <Menu>About US <div className='white'><WhiteArrow/></div><div className='black'><BlackArrow/></div></Menu>
       </MenuUl>
     </MainLayout>
+    
   )
 }
 

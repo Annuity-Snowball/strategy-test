@@ -206,7 +206,7 @@ export default function Singup() {
             await axios(
                 {
                     method : "POST",
-                    url : "http://ec2-3-38-117-165.ap-northeast-2.compute.amazonaws.com:8000/service_api/user/",
+                    url : "http://ec2-43-201-61-246.ap-northeast-2.compute.amazonaws.com:8000/service_api/user/",
                     data : Reigster,
                     headers : {"Content-Type" : "multipart/form-data",},
                 });
