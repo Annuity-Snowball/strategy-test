@@ -104,4 +104,5 @@ class Portfolio_result_temp(models.Model):
     logic_info = models.OneToOneField(Portfolio_info, on_delete=models.CASCADE, null=True) #귀찮아서 일단 널 트루로 했는데 바꿔주기
     recipt_money = models.CharField(max_length=100)
     recipt_period = models.CharField(max_length=100)
+    recipt_benefit = models.CharField(max_length=100, default="0")
     

@@ -2,6 +2,17 @@ from dataclasses import field, fields
 from django.contrib.auth.models import User
 from portfolio.models import User, Portfolio_info, Product_info, Portfolio_result_temp
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """Customizes JWT default Serializer to add more information about user"""
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['name'] = user.name
+        token['email'] = user.email
+
+        return token
 
 ### user serializer ###
 
@@ -158,6 +169,12 @@ class PortfolioTempSerializer(serializers.ModelSerializer):
         model = Portfolio_info
         fields = ('id', 'portfolio_name', 'strategy_number', 'start_date', 'end_date', 'rebalancing_duration', 'input_money', 'input_way', 'user', 'Product_info_count', 'Product_info_set')
         
-    
+class test_portfolioInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product_info
+        fields = '__all__'
+        
+# class PortfolioInfoResultSerialzer(serialzers.ModelSerializer):
+#     information = test_portfolioInfoSerializer(read_on)
         
     

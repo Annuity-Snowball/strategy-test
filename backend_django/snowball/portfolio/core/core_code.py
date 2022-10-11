@@ -519,7 +519,7 @@ def backed_core(portfolio_name, strategy_count, start_time, end_time, rebalance_
     
     # 백테스트 함수 실행, 마지막 1은 세제혜택 여부에 따라 1 또는 0
     # hmm... 스노우볼을 넘겨줄거임
-    return backTesting(*portfolio_instance.returnToBacktest(), stratgy_kind_list, stratgy_sql_query_list, 1000000, snowball)
+    return backTesting(*portfolio_instance.returnToBacktest(), stratgy_kind_list, stratgy_sql_query_list, 0, snowball)
      
  
  
