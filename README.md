@@ -72,5 +72,6 @@ $ source bin/activate
 
 ## config frontend env
 ```
-$ 추후 작성 예정
+$ cd frontend
+$ npm start
 ```
