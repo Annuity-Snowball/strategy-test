@@ -295,10 +295,10 @@ export default function First() {
             <div className="strategyrate">%</div>
             </Title>
             {strategy_lists.map( (strategy_list) =>(
-                <Title1 key={strategy_list.temp_id}>
-                <div className="strategyname">{strategy_list.name}</div>
-                <div className="strategynum">{strategy_list.number}</div>
-                <div className="strategyrate">{strategy_list.rate}</div>
+                <Title1 key={strategy_list.id}>
+                <div className="strategyname">{strategy_list.productName}</div>
+                <div className="strategynum">{strategy_list.productNumber}</div>
+                <div className="strategyrate">{strategy_list.productRate}</div>
                 </Title1>
             ))}
             { strategy_lists.length ? null : <Text2>등록된 전략이 없습니다.</Text2>}
@@ -617,8 +617,8 @@ export default function First() {
             const [select,setSelect]=useState("PBR");
             const [tab,setTab]=useState("");
             const [hide,setHide]=useState("false");
-            const [upperset,setUpper]=useState("0");
-            const [lowerset,setLower]=useState("0");
+            const [upperset,setUpper]=useState(0);
+            const [lowerset,setLower]=useState(0);
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
               }
@@ -633,15 +633,12 @@ export default function First() {
                 const upper =upperset;
                 const lower= lowerset;
                     const newStrategy={
-                        temp_id : nextId,
-                        first_group : props.first,
-                        second_group : props.second,
-                        third_group : props.third,
-                        name : name,
-                        number : number,
-                        rate : rate,
-                        upper : upper,
-                        lower : lower,
+                        "id" : nextId,
+                        "productName" : name,
+                        "productNumber" : parseInt(number),
+                        "productRate" : parseInt(rate),
+                        "productStartRate" : upper,
+                        "productEndRate" : lower,
                     
                     }
                 // setList( (current)=>[newStrategy, ...current]);
@@ -678,8 +675,8 @@ export default function First() {
             const [select,setSelect]=useState("PER");
             const [tab,setTab]=useState("");
             const [hide,setHide]=useState("false");
-            const [upperset,setUpper]=useState("0");
-            const [lowerset,setLower]=useState("0");
+            const [upperset,setUpper]=useState(0);
+            const [lowerset,setLower]=useState(0);
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
               }
@@ -693,18 +690,15 @@ export default function First() {
                 const name = event.target.name.value;
                 const upper =upperset;
                 const lower= lowerset;
-                    const newStrategy={
-                        temp_id : nextId,
-                        first_group : props.first,
-                        second_group : props.second,
-                        third_group : props.third,
-                        name : name,
-                        number : number,
-                        rate : rate,
-                        upper : upper,
-                        lower : lower,
-                    
-                    }
+                const newStrategy={
+                    "id" : nextId,
+                    "productName" : name,
+                    "productNumber" : parseInt(number),
+                    "productRate" : parseInt(rate),
+                    "productStartRate" : upper,
+                    "productEndRate" : lower,
+                
+                }
                 // setList( (current)=>[newStrategy, ...current]);
                     console.log(strategy_lists);
                     const newStrategys=[...strategy_lists];
@@ -739,8 +733,8 @@ export default function First() {
             const [select,setSelect]=useState("PSR");
             const [tab,setTab]=useState("");
             const [hide,setHide]=useState("false");
-            const [upperset,setUpper]=useState("0");
-            const [lowerset,setLower]=useState("0");
+            const [upperset,setUpper]=useState(0);
+            const [lowerset,setLower]=useState(0);
             const handlePortfolioinsert = () =>{
                 setClick( (prev) => !prev );
               }
@@ -754,18 +748,15 @@ export default function First() {
                 const name = event.target.name.value;
                 const upper =upperset;
                 const lower= lowerset;
-                    const newStrategy={
-                        temp_id : nextId,
-                        first_group : props.first,
-                        second_group : props.second,
-                        third_group : props.third,
-                        name : name,
-                        number : number,
-                        rate : rate,
-                        upper : upper,
-                        lower : lower,
-                    
-                    }
+                const newStrategy={
+                    "id" : nextId,
+                    "productName" : name,
+                    "productNumber" : parseInt(number),
+                    "productRate" : parseInt(rate),
+                    "productStartRate" : upper,
+                    "productEndRate" : lower,
+                
+                }
                 // setList( (current)=>[newStrategy, ...current]);
                     console.log(strategy_lists);
                     const newStrategys=[...strategy_lists];
@@ -799,6 +790,7 @@ export default function First() {
             const [start,setStart]=useState("");
             const [end,setEnd]=useState("");
             const [money,setMoney]=useState("");
+            const [startmoney,setStartmoney]=useState("");
             const handleClose =() =>{
               onClose?.();
             };
@@ -809,41 +801,35 @@ export default function First() {
             const handleSubmit = async (event) =>{
                 event.preventDefault();
                 onClose?.();
-                // setList([]);
-                const Reigster = [
+                const Reigster =
                     {
-                        "portfolio_name": portfolio_name,
-                        "strategy_number": String(strategy_lists.length),
-                        "start_date": start,
-                        "end_date": end,
-                        "rebalancing_duration": "3",
-                        "input_money": money,
-                        "input_way": "0",
-                        "user_id": 1
-                    },
-                    {
-                        "temp_id":String(strategy_lists[0].temp_id),
-                        "first_group":strategy_lists[0].first_group,
-                        "second_group":strategy_lists[0].second_group,
-                        "third_group":strategy_lists[0].third_group,
-                        "name":strategy_lists[0].name,
-                        "number":strategy_lists[0].number,
-                        "rate":strategy_lists[0].rate,
-                        "upper":strategy_lists[0].upper,
-                        "lower":strategy_lists[0].lower
-                    },
-                    {
-                        "temp_id":String(strategy_lists[1].temp_id),
-                        "first_group":strategy_lists[1].first_group,
-                        "second_group":strategy_lists[1].second_group,
-                        "third_group":strategy_lists[1].third_group,
-                        "name":strategy_lists[1].name,
-                        "number":strategy_lists[1].number,
-                        "rate":strategy_lists[1].rate,
-                        "upper":strategy_lists[1].upper,
-                        "lower":strategy_lists[1].lower
-                    }
-                ]
+                        "id": 1,
+                        "name": portfolio_name,
+                        "startDate": start,
+                        "endDate": end,
+                        "rebalancing_duration": 3,
+                        "InputMoney": parseInt(money),
+                        "startMoney": parseInt(startmoney),
+                        "inputWay":0,
+                        "strategy_number": parseInt(strategy_lists.length),
+                        "straegies" : strategy_lists,
+                            // {
+                            //     "id":String(strategy_lists[0].temp_id),
+                            //     "productName":strategy_lists[0].name,
+                            //     "productNumber":strategy_lists[0].number,
+                            //     "productRate":strategy_lists[0].rate,
+                            //     "productStartRate":strategy_lists[0].upper,
+                            //     "productEndRate":strategy_lists[0].lower
+                            // },
+                            // {
+                            //     "id":String(strategy_lists[1].temp_id),
+                            //     "name":strategy_lists[1].name,
+                            //     "number":strategy_lists[1].number,
+                            //     "rate":strategy_lists[1].rate,
+                            //     "upper":strategy_lists[1].upper,
+                            //     "lower":strategy_lists[1].lower
+                            // }
+                    };
                 console.log(Reigster);
                 const result = await axios.post(
                     'http://ec2-43-201-61-246.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', Reigster);
@@ -858,7 +844,8 @@ export default function First() {
                   <ModelTitleText>포트폴리오 등록</ModelTitleText>
                   <ModalFrame><span>투자시작일</span><ModalInput name="start_date" placeholder="ex) 2011-11-11" onChange={(e) => {setStart(e.target.value)}}/></ModalFrame>
                   <ModalFrame><span>투자종료일</span><ModalInput name="end_date" placeholder="ex) 2019-11-11" onChange={(e) => {setEnd(e.target.value)}}/></ModalFrame>
-                  <ModalFrame><span>납입금액 </span><ModalInput name="input_money" placeholder="ex) 60000" onChange={(e) => {setMoney(e.target.value)}} style={{width: "150px", marginRight : "8px"}}/>원</ModalFrame>
+                  <ModalFrame><span>초기금액</span><ModalInput name="start_money" placeholder="ex) 30000" onChange={(e) => {setStartmoney(e.target.value)}}/></ModalFrame>
+                  <ModalFrame><span>납입금액 </span><ModalInput name="input_money" placeholder="ex) 60000" onChange={(e) => {setMoney(e.target.value)}}/></ModalFrame>
                   <div style={{width : "100%", display : "flex", flexDirection : "row", marginTop:"auto"}}><Button11 onClick={handleClose}>취소</Button11><Button12 type="submit">완료</Button12></div>
                 </ModalWrap>
               </Overlay>
