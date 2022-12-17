@@ -802,7 +802,7 @@ export default function First() {
                 event.preventDefault();
                 onClose?.();
                 const Reigster =
-                    {
+                    [{
                         "id": 1,
                         "name": portfolio_name,
                         "startDate": start,
@@ -812,35 +812,41 @@ export default function First() {
                         "startMoney": parseInt(startmoney),
                         "inputWay":0,
                         "strategy_number": parseInt(strategy_lists.length),
-                        "straegies" : strategy_lists,
-                            // {
-                            //     "id":String(strategy_lists[0].temp_id),
-                            //     "productName":strategy_lists[0].name,
-                            //     "productNumber":strategy_lists[0].number,
-                            //     "productRate":strategy_lists[0].rate,
-                            //     "productStartRate":strategy_lists[0].upper,
-                            //     "productEndRate":strategy_lists[0].lower
-                            // },
-                            // {
-                            //     "id":String(strategy_lists[1].temp_id),
-                            //     "name":strategy_lists[1].name,
-                            //     "number":strategy_lists[1].number,
-                            //     "rate":strategy_lists[1].rate,
-                            //     "upper":strategy_lists[1].upper,
-                            //     "lower":strategy_lists[1].lower
-                            // }
-                    };
+                        "straegies" :
+                            [{
+                                "id":strategy_lists[0].id,
+                                "productName":strategy_lists[0].productName,
+                                "productNumber":strategy_lists[0].productNumber,
+                                "productRate":strategy_lists[0].productRate,
+                                "productStartRate":strategy_lists[0].productStartRate,
+                                "productEndRate":strategy_lists[0].productEndRate
+                            },
+                            {
+                                "id":strategy_lists[1].id,
+                                "name":strategy_lists[1].productName,
+                                "number":strategy_lists[1].productNumber,
+                                "rate":strategy_lists[1].productRate,
+                                "upper":strategy_lists[1].productStartRate,
+                                "lower":strategy_lists[1].productEndRate
+                            }]
+                    }];
                 console.log(Reigster);
-                const result = await axios.post(
-                    'http://ec2-43-201-61-246.ap-northeast-2.compute.amazonaws.com:8000/port_api/portfolio_info/allinone/create/', Reigster);
-                setTabledata(result);
-                console.log(result);
-                setShow(true);
+
+                try{
+                    const result = await axios.post(
+                    'http://43.200.175.52/backtest/getInfo', Reigster);
+                    setTabledata(result);
+                    console.log(result);
+                    setShow(true);
+                }catch(err)
+                {
+                    console.log(err);
+                }
             };
             return (
               <>
               <Overlay >
-                <ModalWrap onSubmit={handleSubmit}>
+                <ModalWrap onSubmit={handleSubmit} method="POST">
                   <ModelTitleText>포트폴리오 등록</ModelTitleText>
                   <ModalFrame><span>투자시작일</span><ModalInput name="start_date" placeholder="ex) 2011-11-11" onChange={(e) => {setStart(e.target.value)}}/></ModalFrame>
                   <ModalFrame><span>투자종료일</span><ModalInput name="end_date" placeholder="ex) 2019-11-11" onChange={(e) => {setEnd(e.target.value)}}/></ModalFrame>

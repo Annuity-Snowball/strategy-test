@@ -213,6 +213,7 @@ export default function Singup() {
                 alert("회원가입성공!");
                 window.location.href="/";
         }catch(error){
+
             console.log(error);
             if(error.response.data.email[0] === "user with this email already exists.")
             {
@@ -232,7 +233,6 @@ export default function Singup() {
             }
             alert("에러");
         }
-        
     }
   return (
     <>
