@@ -820,15 +820,8 @@ export default function First() {
                                 "productRate":strategy_lists[0].productRate,
                                 "productStartRate":strategy_lists[0].productStartRate,
                                 "productEndRate":strategy_lists[0].productEndRate
-                            },
-                            {
-                                "id":strategy_lists[1].id,
-                                "name":strategy_lists[1].productName,
-                                "number":strategy_lists[1].productNumber,
-                                "rate":strategy_lists[1].productRate,
-                                "upper":strategy_lists[1].productStartRate,
-                                "lower":strategy_lists[1].productEndRate
-                            }]
+                            }
+                        ]
                     }];
                 console.log(Reigster);
 
