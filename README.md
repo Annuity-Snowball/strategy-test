@@ -1,6 +1,6 @@
 # Team 연금스노우볼 :pushpin:
 ## 개발일정 :triangular_flag_on_post:
-<b>2022년 4월 ~ 현재 개발중</b>
+<b>2022년 4월 ~ 2022 11월</b>
 ## LOGO 
 ![logo1](https://user-images.githubusercontent.com/42410000/194292630-4435e322-22ec-4a1a-95b5-035bec96097a.png)
 
